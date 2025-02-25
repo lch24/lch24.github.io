@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #background{
+            position:absolute;
+            background-image: url("0.png");
+            background-size: contain;
+            left:48px;
+            z-index: 0;
+        }
+        #icon{
+            position:absolute;
+            left:48px;
+            z-index: 10;
+        }            
+        #ground{
+            position:absolute;
+            left:48px;
+            z-index: 20;
+        }
+        #end{
+            position:absolute;
+            left:48px;
+            z-index: 30;
+        }
+        #bridge{
+            position:absolute;
+            left:48px;
+            z-index: 30;
+        } 
+        #button{
+            position:absolute;
+            left:48px;
+            z-index: 30;
+        } 
+        #coloregg{
+            position:absolute;
+            left:48px;
+            z-index: 30;
+        } 
+        #block{
+            position:absolute;
+            left:48px;
+            z-index: 40;
+        }
+        #accompany{
+            position:absolute;
+            left:48px;
+            z-index: 50;
+        }
+        #test{
+            position:absolute;
+            left:48px;
+            z-index: 60;
+        }  
+        #line{
+            position:absolute;
+            left:48px;
+            z-index: 60;
+        }    
+        #wall{
+            position:absolute;
+            left:48px;
+            z-index: 40;
+        }
+        #wall2{
+            position:absolute;
+            left:48px;
+            z-index: 30;
+        }
+        #teach{
+            position:absolute;
+            left:48px;
+            z-index: 70;
+        }   
+        #dialog{
+            position:absolute;
+            left:48px;
+            z-index: 80;
+        }      
+        .answer{
+            width: 250px;
+            height: 50px;
+            font-size: 18px;
+            border: 1px solid #999;
+            border-radius: 4px;
+            position: absolute;
+            left:730px;
+            bottom:70px;
+            z-index: 90;
+        }
+        .p{
+            color: white;
+            width: 250px;
+            height: 50px;
+            font-size: 18px;
+            position: absolute;
+            left:770px;
+            bottom:100px;
+            z-index: 90;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="background"></canvas>
+    <script>
+        const back=document.getElementById("background");
+        back.width=1600;
+        back.height=900;
+    </script>
+    <script type="module" src="icon.js"></script>
+    <script type="module" src="bridge.js"></script>
+    <script type="module" src="ground.js"></script>
+    <script type="module" src="end.js"></script>
+    <script type="module" src="button.js"></script>
+    <script type="module" src="ground.js"></script>
+    <script type="module" src="line.js"></script>
+    <script type="module" src="block.js"></script>
+    <script type="module" src="game.js"></script>
+    <script type="module" src="accompany.js"></script>
+    <script type="module" src="dialog.js"></script>
+    <script type="module" src="play.js"></script>
+    <script type="module" src="wall.js"></script>
+    <script type="module" src="teach.js"></script>
+    <script type="module" src="coloregg.js"></script>
+</body>
+</html>

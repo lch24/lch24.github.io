@@ -1,0 +1,35 @@
+const index = {
+  choice: {
+    volid: 0,
+    ground: 1,
+    bridge: 2,
+    button1: 3,
+    button2: 4,
+    end: 5,
+    block: 6,
+    oldground: 7,
+    wall: 8,
+    cegg: 9,
+  },
+  process: {
+    create: 0,
+    play: 1,
+    choose: 2,
+    menu: 3,
+    adventure: 4,
+    teach: 5,
+    cegg: 6,
+  },
+  state: {
+    left: 1,
+    up: 2,
+    back: 4,
+  },
+  dialog_type: {
+    main: 1,
+    menu: 2,
+    win: 3,
+    win2: 4,
+    lose: 5,
+  },
+};

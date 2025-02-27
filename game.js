@@ -692,6 +692,7 @@ window.onclick = function (e) {
             Dialog.clear();
           } else if (e.x > 550 && e.x < 1046 && e.y > 602 && e.y < 698) {
             if (Dialog.mem == 0 || Dialog.mem == 1) {
+              Cegg.clear();
               clear();
               control.choice = 0;
               control.process = 0;

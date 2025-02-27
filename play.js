@@ -1,5 +1,6 @@
 import control from "./control.js";
 import Block from "./block.js";
+import Block2 from "./block2.js";
 import End from "./end.js";
 import Ground from "./ground.js";
 import Button from "./button.js";
@@ -8,7 +9,7 @@ import Cegg from "./coloregg.js";
 import Wall from "./wall.js";
 import { init4 } from "./icon.js";
 const Play = {
-  num: 1,
+  num: 6,
   play() {
     init4();
     switch (this.num) {
@@ -353,6 +354,43 @@ const Play = {
         }
         break;
       case 6:
+        {
+          for (let i = 3; i < 12; i++) {
+            control.center[i][4] = 1;
+            control.center[i][5] = 1;
+            control.center[i][6] = 1;
+            control.center[i][11] = 1;
+            control.center[i][12] = 1;
+            control.center[i][13] = 1;
+          }
+          control.center[11][11] = 0;
+          control.center[11][12] = 0;
+          control.center[11][13] = 0;
+          control.center[10][5] = 5;
+          control.center[9][12] = 5;
+          Block.position = [3, 5];
+          Block2.position = [3, 12];
+          Block2.state = 1;
+          Block.state = 1;
+          Block.num = 1;
+          Block.draw1();
+          Block2.draw1();
+          End.num = 1;
+          End.position = [10, 5];
+          End.draw();
+          End.position = [9, 12];
+          End.draw();
+          for (let i = 13; i > -1; i--) {
+            for (let j = 0; j < 20; j++) {
+              if (control.center[i][j] >= 1 && control.center[i][j] < 2) {
+                Ground.position = [i, j];
+                Ground.draw();
+              }
+            }
+          }
+        }
+        break;
+      case 7:
         {
           control.center[0][4] = 1;
           control.center[0][5] = 1;

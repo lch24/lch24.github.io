@@ -18,6 +18,7 @@ import Wall from "./wall.js";
 import { wallocate } from "./wall.js";
 import Teach from "./teach.js";
 import Cegg from "./coloregg.js";
+import Block2 from "./block2.js";
 window.onclick = function (e) {
   if (control.process == 0) {
     let lst = control.locate(e.x - 48, e.y);
@@ -1271,6 +1272,285 @@ window.onkeydown = function (e) {
         }
         break;
     }
+    if (control.process == 4 && Play.num == 6) {
+      switch (Block2.state) {
+        case 1:
+          {
+            let [x, y] = [Block2.position[0], Block2.position[1]];
+            switch (e.key) {
+              case "a":
+              case "A":
+              case "ArrowLeft":
+                {
+                  if (x == 0) {
+                  } else {
+                    if (
+                      control.center[x - 1][y] &&
+                      (control.center[x][y] * 4) % 4 != 2 &&
+                      (control.center[x][y] * 4) % 4 != 3
+                    ) {
+                      Block2.clear();
+                      Block2.position = [x - 1, y];
+                      Block2.state = 2;
+                      Block2.draw2();
+                    }
+                  }
+                }
+                break;
+              case "w":
+              case "W":
+              case "ArrowUp":
+                {
+                  if (y == 0) {
+                  } else {
+                    if (
+                      control.center[x][y - 1] &&
+                      control.center[x + 1][y - 1] &&
+                      (control.center[x][y] * 4) % 4 != 1 &&
+                      (control.center[x + 1][y - 1] * 4) % 4 != 2 &&
+                      (control.center[x + 1][y - 1] * 4) % 4 != 3 &&
+                      (control.center[x][y] * 4) % 4 != 3 &&
+                      (control.center[x + 1][y] * 4) % 4 != 1 &&
+                      (control.center[x + 1][y] * 4) % 4 != 3
+                    ) {
+                      Block2.clear();
+                      Block2.position = [x, y - 1];
+                      Block2.draw1();
+                    }
+                  }
+                }
+                break;
+              case "s":
+              case "S":
+              case "ArrowDown":
+                {
+                  if (y == 18) {
+                  } else {
+                    if (
+                      control.center[x][y + 1] &&
+                      control.center[x + 1][y + 1] &&
+                      (control.center[x][y + 1] * 4) % 4 != 1 &&
+                      (control.center[x][y + 1] * 4) % 4 != 3 &&
+                      (control.center[x + 1][y + 1] * 4) % 4 != 1 &&
+                      (control.center[x + 1][y + 1] * 4) % 4 != 3 &&
+                      (control.center[x + 1][y + 1] * 4) % 4 != 2
+                    ) {
+                      Block2.clear();
+                      Block2.position = [x, y + 1];
+                      Block2.draw1();
+                    }
+                  }
+                }
+                break;
+              case "d":
+              case "D":
+              case "ArrowRight":
+                {
+                  if (x >= 12) {
+                  } else {
+                    if (
+                      control.center[x + 2][y] &&
+                      (control.center[x + 2][y] * 4) % 4 != 2 &&
+                      (control.center[x + 2][y] * 4) % 4 != 3
+                    ) {
+                      Block2.clear();
+                      Block2.position = [x + 2, y];
+                      Block2.state = 2;
+                      Block2.draw2();
+                    }
+                  }
+                }
+                break;
+            }
+          }
+          break;
+        case 2:
+          {
+            let [x, y] = [Block2.position[0], Block2.position[1]];
+            switch (e.key) {
+              case "a":
+              case "A":
+              case "ArrowLeft":
+                {
+                  if (x <= 1) {
+                  } else {
+                    if (
+                      control.center[x - 1][y] &&
+                      control.center[x - 2][y] &&
+                      (control.center[x][y] * 4) % 4 != 2 &&
+                      (control.center[x][y] * 4) % 4 != 3 &&
+                      (control.center[x - 1][y] * 4) % 4 != 2 &&
+                      (control.center[x - 1][y] * 4) % 4 != 3
+                    ) {
+                      Block2.clear();
+                      Block2.position = [x - 2, y];
+                      Block2.state = 1;
+                      Block2.draw1();
+                    }
+                  }
+                }
+                break;
+              case "w":
+              case "W":
+              case "ArrowUp":
+                {
+                  if (y <= 1) {
+                  } else {
+                    if (
+                      control.center[x][y - 1] &&
+                      control.center[x][y - 2] &&
+                      (control.center[x][y] * 4) % 4 != 1 &&
+                      (control.center[x][y] * 4) % 4 != 3 &&
+                      (control.center[x][y - 1] * 4) % 4 != 1 &&
+                      (control.center[x][y - 1] * 4) % 4 != 3
+                    ) {
+                      Block2.clear();
+                      Block2.position = [x, y - 2];
+                      Block2.state = 3;
+                      Block2.draw3();
+                    }
+                  }
+                }
+                break;
+              case "s":
+              case "S":
+              case "ArrowDown":
+                {
+                  if (y >= 17) {
+                  } else {
+                    if (
+                      control.center[x][y + 1] &&
+                      control.center[x][y + 2] &&
+                      (control.center[x][y + 1] * 4) % 4 != 1 &&
+                      (control.center[x][y + 1] * 4) % 4 != 3 &&
+                      (control.center[x][y + 2] * 4) % 4 != 1 &&
+                      (control.center[x][y + 2] * 4) % 4 != 3
+                    ) {
+                      Block2.clear();
+                      Block2.position = [x, y + 1];
+                      Block2.state = 3;
+                      Block2.draw3();
+                    }
+                  }
+                }
+                break;
+              case "d":
+              case "D":
+              case "ArrowRight":
+                {
+                  if (x >= 12) {
+                  } else {
+                    if (
+                      control.center[x + 1][y] &&
+                      control.center[x + 2][y] &&
+                      (control.center[x + 1][y] * 4) % 4 != 2 &&
+                      (control.center[x + 1][y] * 4) % 4 != 3 &&
+                      (control.center[x + 2][y] * 4) % 4 != 2 &&
+                      (control.center[x + 2][y] * 4) % 4 != 3
+                    ) {
+                      Block2.clear();
+                      Block2.position = [x + 1, y];
+                      Block2.state = 1;
+                      Block2.draw1();
+                    }
+                  }
+                }
+                break;
+            }
+          }
+          break;
+        case 3:
+          {
+            let [x, y] = [Block2.position[0], Block2.position[1]];
+            switch (e.key) {
+              case "a":
+              case "A":
+              case "ArrowLeft":
+                {
+                  if (x == 0) {
+                  } else {
+                    if (
+                      control.center[x - 1][y] &&
+                      control.center[x - 1][y + 1] &&
+                      (control.center[x][y] * 4) % 4 != 2 &&
+                      (control.center[x][y] * 4) % 4 != 3 &&
+                      (control.center[x - 1][y + 1] * 4) % 4 != 1 &&
+                      (control.center[x - 1][y + 1] * 4) % 4 != 3 &&
+                      (control.center[x][y + 1] * 4) % 4 != 2 &&
+                      (control.center[x][y + 1] * 4) % 4 != 3
+                    ) {
+                      Block2.clear();
+                      Block2.position = [x - 1, y];
+                      Block2.draw3();
+                    }
+                  }
+                }
+                break;
+              case "w":
+              case "W":
+              case "ArrowUp":
+                {
+                  if (y == 0) {
+                  } else {
+                    if (
+                      control.center[x][y - 1] &&
+                      (control.center[x][y] * 4) % 4 != 1 &&
+                      (control.center[x][y] * 4) % 4 != 3
+                    ) {
+                      Block2.clear();
+                      Block2.position = [x, y - 1];
+                      Block2.state = 2;
+                      Block2.draw2();
+                    }
+                  }
+                }
+                break;
+              case "s":
+              case "S":
+              case "ArrowDown":
+                {
+                  if (y >= 17) {
+                  } else {
+                    if (
+                      control.center[x][y + 2] &&
+                      (control.center[x][y + 2] * 4) % 4 != 1 &&
+                      (control.center[x][y + 2] * 4) % 4 != 3
+                    ) {
+                      Block2.clear();
+                      Block2.position = [x, y + 2];
+                      Block2.state = 2;
+                      Block2.draw2();
+                    }
+                  }
+                }
+                break;
+              case "d":
+              case "D":
+              case "ArrowRight":
+                {
+                  if (x == 13) {
+                  } else {
+                    if (
+                      control.center[x + 1][y] &&
+                      control.center[x + 1][y + 1] &&
+                      (control.center[x + 1][y] * 4) % 4 != 2 &&
+                      (control.center[x + 1][y] * 4) % 4 != 3 &&
+                      (control.center[x + 1][y + 1] * 4) % 4 != 2 &&
+                      (control.center[x + 1][y + 1] * 4) % 4 != 3 &&
+                      (control.center[x + 1][y + 1] * 4) % 4 != 1
+                    ) {
+                      Block2.clear();
+                      Block2.position = [x + 1, y];
+                      Block2.draw3();
+                    }
+                  }
+                }
+                break;
+            }
+          }
+          break;
+      }
+    }
     Wall.clear();
     Wall.clear2();
     for (let i = 0; i < 14; i++) {
@@ -1407,26 +1687,56 @@ window.onkeyup = function () {
       k = 0;
       loop();
     }
-    if (
-      control.center[x][y] >= 5 &&
-      control.center[x][y] < 6 &&
-      Block.state == 2
-    ) {
-      h = 0;
-      v = 0;
-      k = 0;
-      Lst = [];
-      Block.clear();
-      end(x, y);
-      if (control.process == 1) {
-        setTimeout(Dialog.win, 1000);
-        Dialog.type = 3;
-      } else {
-        setTimeout(Dialog.win2, 1000);
-        Dialog.type = 4;
+    if (control.process == 4 && Play.num == 6) {
+      let [a, b] = Block2.position;
+      if (
+        control.center[x][y] >= 5 &&
+        control.center[x][y] < 6 &&
+        Block.state == 2 &&
+        control.center[a][b] >= 5 &&
+        control.center[a][b] < 6 &&
+        Block2.state == 2
+      ) {
+        h = 0;
+        v = 0;
+        k = 0;
+        Lst = [];
+        Block.clear();
+        Block2.clear();
+        end(x, y);
+        end(a, b);
+        if (control.process == 1) {
+          setTimeout(Dialog.win, 1000);
+          Dialog.type = 3;
+        } else {
+          setTimeout(Dialog.win2, 1000);
+          Dialog.type = 4;
+        }
+        control.process = 3;
       }
-      control.process = 3;
+    } else {
+      if (
+        control.center[x][y] >= 5 &&
+        control.center[x][y] < 6 &&
+        Block.state == 2
+      ) {
+        h = 0;
+        v = 0;
+        k = 0;
+        Lst = [];
+        Block.clear();
+        end(x, y);
+        if (control.process == 1) {
+          setTimeout(Dialog.win, 1000);
+          Dialog.type = 3;
+        } else {
+          setTimeout(Dialog.win2, 1000);
+          Dialog.type = 4;
+        }
+        control.process = 3;
+      }
     }
+
     if (control.center[x][y] >= 9 && control.center[x][y] < 10) {
       control.center[x][y] = 1;
       Cegg.num++;

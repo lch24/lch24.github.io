@@ -765,6 +765,7 @@ window.onclick = function (e) {
             Dialog.main();
           } else if (e.x > 550 && e.x < 1146 && e.y > 522 && e.y < 668) {
             if (Dialog.mem == 0 || Dialog.mem == 1) {
+              Cegg.clear();
               control.choice = 0;
               control.process = Dialog.mem;
               Accompany.clear();
@@ -807,6 +808,7 @@ window.onclick = function (e) {
             Dialog.clear();
             Dialog.main();
           } else if (e.x > 550 && e.x < 1146 && e.y > 522 && e.y < 668) {
+            Cegg.clear();
             Accompany.clear();
             Block.clear();
             Bridge.clear();
@@ -847,6 +849,7 @@ window.onclick = function (e) {
             Dialog.clear();
             Dialog.main();
           } else if (e.x > 550 && e.x < 1146 && e.y > 522 && e.y < 668) {
+            Cegg.clear();
             clear();
             Accompany.clear();
             Block.clear();

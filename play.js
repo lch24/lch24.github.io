@@ -352,7 +352,7 @@ const Play = {
           }
         }
         break;
-      case 7:
+      case 6:
         {
           control.center[0][4] = 1;
           control.center[0][5] = 1;

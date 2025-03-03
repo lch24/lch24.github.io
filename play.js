@@ -1,6 +1,6 @@
 import control from "./control.js";
 import Block from "./block.js";
-import Block2 from "./block2.js";
+import Block2 from "./Block2.js";
 import End from "./end.js";
 import Ground from "./ground.js";
 import Button from "./button.js";

@@ -18,7 +18,7 @@ import Wall from "./wall.js";
 import { wallocate } from "./wall.js";
 import Teach from "./teach.js";
 import Cegg from "./coloregg.js";
-import Block2 from "./block2.js";
+import Block2 from "./Block2.js";
 window.onclick = function (e) {
   if (control.process == 0) {
     let lst = control.locate(e.x - 48, e.y);

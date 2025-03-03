@@ -587,6 +587,7 @@ window.onclick = function (e) {
         {
           if (e.x > 550 && e.x < 1146 && e.y > 342 && e.y < 438) {
             clear();
+            Cegg.clear();
             control.choice = 0;
             control.process = 0;
             Accompany.clear();
@@ -618,6 +619,7 @@ window.onclick = function (e) {
             Teach.num++;
             Teach.draw();
           } else if (e.x > 550 && e.x < 1046 && e.y > 472 && e.y < 568) {
+            Cegg.clear();
             clear();
             control.process = 4;
             control.choice = 0;
@@ -648,6 +650,7 @@ window.onclick = function (e) {
             }
             Play.play();
           } else if (e.x > 550 && e.x < 1046 && e.y > 602 && e.y < 698) {
+            Cegg.clear();
             clear();
             control.choice = 0;
             control.process = 0;

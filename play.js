@@ -106,7 +106,7 @@ const Play = {
           Block.position = [2, 4];
           Block.state = 1;
           Block.num = 1;
-          Block.draw2();
+          Block.draw1();
           End.num = 1;
           End.position = [9, 11];
           End.draw();

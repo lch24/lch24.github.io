@@ -9,7 +9,7 @@ import Cegg from "./coloregg.js";
 import Wall from "./wall.js";
 import { init4 } from "./icon.js";
 const Play = {
-  num: 1,
+  num: 5,
   play() {
     init4();
     switch (this.num) {
@@ -373,6 +373,7 @@ const Play = {
           Block2.state = 1;
           Block.state = 1;
           Block.num = 1;
+          Block2.num = 1;
           Block.draw1();
           Block2.draw1();
           End.num = 1;

@@ -4,6 +4,7 @@ import { drawbridge } from "./game.js";
 import Block from "./block.js";
 import Wall from "./wall.js";
 import { wallocate } from "./wall.js";
+import Sblock from "./strangeblock.js";
 const acc = document.createElement("canvas");
 acc.width = 1600;
 acc.height = 900;
@@ -208,59 +209,143 @@ const Accompany = {
               ctx.stroke();
             }
             break;
-          case 8: {
-            if (Wall.type == 1) {
-              if (lst[1] == 0) {
-                acdraw8("#CD2626", lst);
-              } else if (
-                control.center[lst[0]][lst[1]] != 0 &&
-                control.center[lst[0]][lst[1]] != 2 &&
-                control.center[lst[0]][lst[1] - 1] != 0 &&
-                control.center[lst[0]][lst[1] - 1] != 2 &&
-                (control.center[lst[0]][lst[1]] * 4) % 4 != 1 &&
-                (control.center[lst[0]][lst[1]] * 4) % 4 != 3
-              ) {
-                if (
-                  Block.state == 3 &&
-                  Block.position[0] == lst[0] &&
-                  Block.position[1] == lst[1] - 1
-                ) {
+          case 8:
+            {
+              if (Wall.type == 1) {
+                if (lst[1] == 0) {
                   acdraw8("#CD2626", lst);
-                } else {
-                  acdraw8("#ADFF2F", lst);
-                }
-              } else {
-                acdraw8("#CD2626", lst);
-              }
-            } else if (Wall.type == 2) {
-              if (lst[0] == 0) {
-                acdraw8("#CD2626", lst);
-              } else if (
-                control.center[lst[0]][lst[1]] != 0 &&
-                control.center[lst[0]][lst[1]] != 2 &&
-                control.center[lst[0] - 1][lst[1]] != 0 &&
-                control.center[lst[0] - 1][lst[1]] != 2 &&
-                (control.center[lst[0]][lst[1]] * 4) % 4 != 2 &&
-                (control.center[lst[0]][lst[1]] * 4) % 4 != 3
-              ) {
-                if (
-                  Block.state == 1 &&
-                  Block.position[0] == lst[0] - 1 &&
-                  Block.position[1] == lst[1]
+                } else if (
+                  control.center[lst[0]][lst[1]] != 0 &&
+                  control.center[lst[0]][lst[1]] != 2 &&
+                  control.center[lst[0]][lst[1] - 1] != 0 &&
+                  control.center[lst[0]][lst[1] - 1] != 2 &&
+                  (control.center[lst[0]][lst[1]] * 4) % 4 != 1 &&
+                  (control.center[lst[0]][lst[1]] * 4) % 4 != 3
                 ) {
-                  acdraw8("#CD2626", lst);
+                  if (
+                    Block.state == 3 &&
+                    Block.position[0] == lst[0] &&
+                    Block.position[1] == lst[1] - 1
+                  ) {
+                    acdraw8("#CD2626", lst);
+                  } else {
+                    acdraw8("#ADFF2F", lst);
+                  }
                 } else {
-                  acdraw8("#ADFF2F", lst);
+                  acdraw8("#CD2626", lst);
                 }
-              } else {
-                acdraw8("#CD2626", lst);
+              } else if (Wall.type == 2) {
+                if (lst[0] == 0) {
+                  acdraw8("#CD2626", lst);
+                } else if (
+                  control.center[lst[0]][lst[1]] != 0 &&
+                  control.center[lst[0]][lst[1]] != 2 &&
+                  control.center[lst[0] - 1][lst[1]] != 0 &&
+                  control.center[lst[0] - 1][lst[1]] != 2 &&
+                  (control.center[lst[0]][lst[1]] * 4) % 4 != 2 &&
+                  (control.center[lst[0]][lst[1]] * 4) % 4 != 3
+                ) {
+                  if (
+                    Block.state == 1 &&
+                    Block.position[0] == lst[0] - 1 &&
+                    Block.position[1] == lst[1]
+                  ) {
+                    acdraw8("#CD2626", lst);
+                  } else {
+                    acdraw8("#ADFF2F", lst);
+                  }
+                } else {
+                  acdraw8("#CD2626", lst);
+                }
+                ctx.beginPath();
+                ctx.roundRect(564, 824, 72, 72, 10);
+                ctx.strokeStyle = "black";
+                ctx.setLineDash([10, 15]);
+                ctx.lineWidth = 1;
+                ctx.stroke();
               }
-              ctx.beginPath();
-              ctx.roundRect(564, 824, 72, 72, 10);
-              ctx.strokeStyle = "black";
-              ctx.setLineDash([10, 15]);
-              ctx.lineWidth = 1;
-              ctx.stroke();
+            }
+            break;
+          case 11: {
+            switch (Sblock.state) {
+              case 1:
+                {
+                  if (
+                    (control.center[lst[0]][lst[1]] == 1 ||
+                      control.center[lst[0]][lst[1]] == 1.25 ||
+                      control.center[lst[0]][lst[1]] == 1.5 ||
+                      control.center[lst[0]][lst[1]] == 1.75) &&
+                    (control.center[lst[0] + 1][lst[1]] == 1 ||
+                      control.center[lst[0] + 1][lst[1]] == 1.25)
+                  ) {
+                    acdraw11(1, "#ADFF2F", lst);
+                  } else {
+                    acdraw11(1, "#CD2626", lst);
+                  }
+                }
+                break;
+              case 2:
+                {
+                  if (
+                    control.center[lst[0]][lst[1]] == 1 ||
+                    control.center[lst[0]][lst[1]] == 1.25 ||
+                    control.center[lst[0]][lst[1]] == 1.5 ||
+                    control.center[lst[0]][lst[1]] == 1.75
+                  ) {
+                    acdraw11(2, "#ADFF2F", lst);
+                  } else {
+                    acdraw11(2, "#CD2626", lst);
+                  }
+                }
+                break;
+              case 3:
+                {
+                  if (
+                    (control.center[lst[0]][lst[1]] == 1 ||
+                      control.center[lst[0]][lst[1]] == 1.25 ||
+                      control.center[lst[0]][lst[1]] == 1.5 ||
+                      control.center[lst[0]][lst[1]] == 1.75) &&
+                    (control.center[lst[0]][lst[1] + 1] == 1 ||
+                      control.center[lst[0]][lst[1] + 1] == 1.5)
+                  ) {
+                    acdraw11(3, "#ADFF2F", lst);
+                  } else {
+                    acdraw11(3, "#CD2626", lst);
+                  }
+                }
+                break;
+              case 4:
+                {
+                  if (
+                    (control.center[lst[0]][lst[1]] == 1 ||
+                      control.center[lst[0]][lst[1]] == 1.25 ||
+                      control.center[lst[0]][lst[1]] == 1.5 ||
+                      control.center[lst[0]][lst[1]] == 1.75) &&
+                    (control.center[lst[0]][lst[1] + 1] == 1 ||
+                      control.center[lst[0]][lst[1] + 1] == 1.5)
+                  ) {
+                    acdraw11(4, "#ADFF2F", lst);
+                  } else {
+                    acdraw11(4, "#CD2626", lst);
+                  }
+                }
+                break;
+              case 5:
+                {
+                  if (
+                    (control.center[lst[0]][lst[1]] == 1 ||
+                      control.center[lst[0]][lst[1]] == 1.25 ||
+                      control.center[lst[0]][lst[1]] == 1.5 ||
+                      control.center[lst[0]][lst[1]] == 1.75) &&
+                    (control.center[lst[0] + 1][lst[1]] == 1 ||
+                      control.center[lst[0] + 1][lst[1]] == 1.25)
+                  ) {
+                    acdraw11(5, "#ADFF2F", lst);
+                  } else {
+                    acdraw11(5, "#CD2626", lst);
+                  }
+                }
+                break;
             }
           }
         }
@@ -349,10 +434,36 @@ const Accompany = {
               ctx.stroke();
             }
             break;
-          case 8: {
-            acdraw8("#CD2626", lst);
-            ctx.beginPath();
-            ctx.roundRect(564, 824, 72, 72, 10);
+          case 8:
+            {
+              acdraw8("#CD2626", lst);
+              ctx.beginPath();
+              ctx.roundRect(564, 824, 72, 72, 10);
+              ctx.strokeStyle = "black";
+              ctx.setLineDash([10, 15]);
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+            break;
+          case 11: {
+            switch (Sblock.state) {
+              case 1:
+                acdraw11(1, "#CD2626", lst);
+                break;
+              case 2:
+                acdraw11(2, "#CD2626", lst);
+                break;
+              case 3:
+                acdraw11(3, "#CD2626", lst);
+                break;
+              case 4:
+                acdraw11(4, "#CD2626", lst);
+                break;
+              case 5:
+                acdraw11(5, "#CD2626", lst);
+                break;
+            }
+            ctx.roundRect(644, 824, 72, 72, 10);
             ctx.strokeStyle = "black";
             ctx.setLineDash([10, 15]);
             ctx.lineWidth = 1;
@@ -593,6 +704,206 @@ function acdraw8(colour, lst) {
     ctx.lineWidth = 5;
     ctx.fill();
     ctx.stroke();
+  }
+}
+function acdraw11(state, colour, lst) {
+  ctx.clearRect(0, 0, 1600, 900);
+  let ls = control.convert(lst[0], lst[1]);
+  switch (state) {
+    case 1:
+      {
+        if (!colour.startsWith("#")) {
+          colour = color.colorNameToHex(this.colour);
+        }
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(ls[0] + 80, ls[1] - 80);
+        ctx.lineTo(ls[0] + 30, ls[1] - 18);
+        ctx.lineTo(ls[0] + 104, ls[1] - 48);
+        ctx.closePath();
+        ctx.fillStyle = color.getLightColor(colour, 0.2);
+        ctx.fill();
+        ctx.restore();
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(ls[0] + 104, ls[1] - 48);
+        ctx.lineTo(ls[0] + 30, ls[1] - 18);
+        ctx.lineTo(ls[0] + 104, ls[1] + 32);
+        ctx.closePath();
+        ctx.fillStyle = color.getDarkColor(colour, 0.4);
+        ctx.fill();
+        ctx.restore();
+        ctx.save();
+        ctx.beginPath();
+        ctx.transform(1.2, 0, 0.785, 1, ls[0] + 80, ls[1] - 80);
+        ctx.fillStyle = color.getLightColor(colour, 0.4);
+        ctx.fillRect(0, 0, 65, 31.8);
+        ctx.restore();
+        ctx.save();
+        ctx.beginPath();
+        ctx.translate(ls[0] + 104, ls[1] - 48);
+        ctx.fillStyle = color.getDarkColor(colour, 0.3);
+        ctx.fillRect(0, 0, 80, 80);
+        ctx.restore();
+      }
+      break;
+    case 2:
+      {
+        if (!colour.startsWith("#")) {
+          colour = color.colorNameToHex(colour);
+        }
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(ls[0], ls[1] - 80);
+        ctx.lineTo(ls[0] + 53, ls[1] - 128);
+        ctx.lineTo(ls[0] + 24, ls[1] - 48);
+        ctx.closePath();
+        ctx.fillStyle = color.getDarkColor(colour, 0.2);
+        ctx.fill();
+        ctx.restore();
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(ls[0] + 24, ls[1] - 48);
+        ctx.lineTo(ls[0] + 53, ls[1] - 128);
+        ctx.lineTo(ls[0] + 104, ls[1] - 48);
+        ctx.closePath();
+        ctx.fillStyle = color.getLightColor(colour, 0.3);
+        ctx.fill();
+        ctx.restore();
+        ctx.save();
+        ctx.transform(1, 1.36, 0, 1, ls[0], ls[1] + 80);
+        ctx.fillStyle = color.getDarkColor(colour, 0.3);
+        ctx.fillRect(0, -160, 24, 80);
+        ctx.restore();
+        ctx.save();
+        ctx.translate(ls[0] + 24, ls[1] - 48);
+        ctx.fillStyle = color.getLightColor(colour, 0.2);
+        ctx.fillRect(0, 0, 80, 80);
+        ctx.restore();
+      }
+      break;
+    case 3:
+      {
+        if (!colour.startsWith("#")) {
+          colour = color.colorNameToHex(colour);
+        }
+        ctx.save();
+        ctx.transform(1, 1.36, 0, 1, ls[0], ls[1]);
+        ctx.fillStyle = color.getDarkColor(colour, 0.3);
+        ctx.fillRect(0, -80, 24, 80);
+        ctx.restore();
+        ctx.save();
+        ctx.transform(1.2, 0, 0.75, 1, ls[0], ls[1] - 80);
+        ctx.fillStyle = color.getLightColor(colour, 0.3);
+        ctx.fillRect(0, 0, 66, 33);
+        ctx.restore();
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(ls[0] + 24, ls[1] - 48);
+        ctx.lineTo(ls[0] + 80, ls[1] + 10);
+        ctx.lineTo(ls[0] + 24, ls[1] + 32);
+        ctx.closePath();
+        ctx.fillStyle = color.getDarkColor(colour, 0.2);
+        ctx.fill();
+        ctx.restore();
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(ls[0] + 24, ls[1] - 48);
+        ctx.lineTo(ls[0] + 80, ls[1] + 10);
+        ctx.lineTo(ls[0] + 104, ls[1] - 48);
+        ctx.closePath();
+        ctx.fillStyle = color.getLightColor(colour, 0.2);
+        ctx.fill();
+        ctx.restore();
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(ls[0] + 24, ls[1] + 32);
+        ctx.lineTo(ls[0] + 80, ls[1] + 10);
+        ctx.lineTo(ls[0] + 104, ls[1] + 32);
+        ctx.closePath();
+        ctx.fillStyle = color.getDarkColor(colour, 0.4);
+        ctx.fill();
+        ctx.restore();
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(ls[0] + 104, ls[1] - 48);
+        ctx.lineTo(ls[0] + 80, ls[1] + 10);
+        ctx.lineTo(ls[0] + 104, ls[1] + 32);
+        ctx.closePath();
+        ctx.fillStyle = color.getLightColor(colour, 0.1);
+        ctx.fill();
+        ctx.restore();
+      }
+      break;
+    case 4:
+      {
+        if (!colour.startsWith("#")) {
+          colour = color.colorNameToHex(colour);
+        }
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(ls[0] + 104, ls[1] - 48);
+        ctx.lineTo(ls[0] + 40, ls[1] - 60);
+        ctx.lineTo(ls[0] + 24, ls[1] - 48);
+        ctx.closePath();
+        ctx.fillStyle = color.getDarkColor(colour, 0.3);
+        ctx.fill();
+        ctx.restore();
+        ctx.save();
+        ctx.transform(1, 1.36, 0, 1, ls[0] + 24, ls[1] + 32);
+        ctx.fillStyle = color.getLightColor(colour, 0.2);
+        ctx.fillRect(0, -80, 24, 80);
+        ctx.restore();
+        ctx.save();
+        ctx.transform(1.2, 0, 0.75, 1, ls[0] + 24, ls[1] - 48);
+        ctx.fillStyle = color.getLightColor(colour, 0.1);
+        ctx.fillRect(0, 0, 66, 33);
+        ctx.restore();
+        ctx.save();
+        ctx.translate(ls[0] + 48, ls[1] - 16);
+        ctx.fillStyle = color.getDarkColor(colour, 0.1);
+        ctx.fillRect(0, 0, 80, 80);
+        ctx.restore();
+      }
+      break;
+    case 5: {
+      if (!colour.startsWith("#")) {
+        colour = color.colorNameToHex(colour);
+      }
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(ls[0] + 80, ls[1] - 80);
+      ctx.lineTo(ls[0] + 150, ls[1] - 20);
+      ctx.lineTo(ls[0] + 104, ls[1] - 48);
+      ctx.closePath();
+      ctx.fillStyle = color.getLightColor(colour, 0.1);
+      ctx.fill();
+      ctx.restore();
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(ls[0] + 104, ls[1] - 48);
+      ctx.lineTo(ls[0] + 150, ls[1] - 20);
+      ctx.lineTo(ls[0] + 104, ls[1] + 32);
+      ctx.closePath();
+      ctx.fillStyle = color.getDarkColor(colour, 0.1);
+      ctx.fill();
+      ctx.restore();
+      ctx.save();
+      ctx.transform(1, 1.36, 0, 1, ls[0], ls[1]);
+      ctx.fillStyle = color.getDarkColor(colour, 0.3);
+      ctx.fillRect(0, -80, 24, 80);
+      ctx.restore();
+      ctx.save();
+      ctx.transform(1.2, 0, 0.75, 1, ls[0], ls[1] - 80);
+      ctx.fillStyle = color.getLightColor(colour, 0.2);
+      ctx.fillRect(0, 0, 66, 33);
+      ctx.restore();
+      ctx.save();
+      ctx.translate(ls[0] + 24, ls[1] - 48);
+      ctx.fillStyle = color.getLightColor(colour, 0.1);
+      ctx.fillRect(0, 0, 80, 80);
+      ctx.restore();
+    }
   }
 }
 export default Accompany;

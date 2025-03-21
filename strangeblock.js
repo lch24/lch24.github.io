@@ -1,0 +1,242 @@
+import control from "./control.js";
+const sblc = document.createElement("canvas");
+sblc.width = 1600;
+sblc.height = 900;
+sblc.id = "sblock";
+document.body.append(sblc);
+const ctx = sblc.getContext("2d");
+const Sblock = {
+  num: 0,
+  state: 1,
+  position: [0, 0],
+  colour: "#00EE00",
+  texture: "2.png",
+  async draw1() {
+    let lst = control.convert(this.position[0], this.position[1]);
+    const img = new Image();
+    img.src = this.texture;
+    await new Promise((resolve) => {
+      img.onload = resolve;
+    });
+    const pattern = ctx.createPattern(img, null);
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(lst[0] + 80, lst[1] - 80);
+    ctx.lineTo(lst[0] + 30, lst[1] - 18);
+    ctx.lineTo(lst[0] + 104, lst[1] - 48);
+    ctx.closePath();
+    ctx.filter = "brightness(1.5)";
+    ctx.translate(730, 550);
+    ctx.fillStyle = pattern;
+    ctx.fill();
+    ctx.restore();
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(lst[0] + 104, lst[1] - 48);
+    ctx.lineTo(lst[0] + 30, lst[1] - 18);
+    ctx.lineTo(lst[0] + 104, lst[1] + 32);
+    ctx.closePath();
+    ctx.filter = "brightness(0.9)";
+    ctx.translate(730, 550);
+    ctx.fillStyle = pattern;
+    ctx.fill();
+    ctx.restore();
+    ctx.save();
+    ctx.beginPath();
+    ctx.transform(1.2, 0, 0.785, 1, lst[0] + 80, lst[1] - 80);
+    ctx.filter = "brightness(1.5)";
+    ctx.drawImage(img, 0, 0, 65, 31.8);
+    ctx.restore();
+    ctx.save();
+    ctx.beginPath();
+    ctx.translate(lst[0] + 104, lst[1] - 48);
+    ctx.drawImage(img, 0, 0, 80, 80);
+    ctx.restore();
+  },
+  async draw2() {
+    let lst = control.convert(this.position[0], this.position[1]);
+    const img = new Image();
+    img.src = this.texture;
+    await new Promise((resolve) => {
+      img.onload = resolve;
+    });
+    const pattern = ctx.createPattern(img, "repeat");
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(lst[0], lst[1] - 80);
+    ctx.lineTo(lst[0] + 53, lst[1] - 128);
+    ctx.lineTo(lst[0] + 24, lst[1] - 48);
+    ctx.closePath();
+    ctx.filter = "brightness(0.8)";
+    ctx.translate(700, 550);
+    ctx.fillStyle = pattern;
+    ctx.fill();
+    ctx.restore();
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(lst[0] + 24, lst[1] - 48);
+    ctx.lineTo(lst[0] + 53, lst[1] - 128);
+    ctx.lineTo(lst[0] + 104, lst[1] - 48);
+    ctx.closePath();
+    ctx.filter = "brightness(1.3)";
+    ctx.translate(700, 550);
+    ctx.fillStyle = pattern;
+    ctx.fill();
+    ctx.restore();
+    ctx.save();
+    ctx.transform(1, 1.36, 0, 1, lst[0], lst[1] + 80);
+    ctx.filter = "brightness(0.5)";
+    ctx.drawImage(img, 0, -160, 24, 80);
+    ctx.restore();
+    ctx.save();
+    ctx.translate(lst[0] + 24, lst[1] - 48);
+    ctx.drawImage(img, 0, 0, 80, 80);
+    ctx.restore();
+  },
+  async draw3() {
+    let lst = control.convert(this.position[0], this.position[1]);
+    const img = new Image();
+    img.src = this.texture;
+    await new Promise((resolve) => {
+      img.onload = resolve;
+    });
+    ctx.save();
+    ctx.transform(1, 1.36, 0, 1, lst[0], lst[1]);
+    ctx.filter = "brightness(0.5)";
+    ctx.drawImage(img, 0, -80, 24, 80);
+    ctx.restore();
+    ctx.save();
+    ctx.transform(1.2, 0, 0.75, 1, lst[0], lst[1] - 80);
+    ctx.filter = "brightness(1.5)";
+    ctx.drawImage(img, 0, 0, 66, 33);
+    ctx.restore();
+    const pattern = ctx.createPattern(img, "repeat");
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(lst[0] + 24, lst[1] - 48);
+    ctx.lineTo(lst[0] + 80, lst[1] + 10);
+    ctx.lineTo(lst[0] + 24, lst[1] + 32);
+    ctx.closePath();
+    ctx.filter = "brightness(1.2)";
+    ctx.translate(670, 550);
+    ctx.fillStyle = pattern;
+    ctx.fill();
+    ctx.restore();
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(lst[0] + 24, lst[1] - 48);
+    ctx.lineTo(lst[0] + 80, lst[1] + 10);
+    ctx.lineTo(lst[0] + 104, lst[1] - 48);
+    ctx.closePath();
+    ctx.filter = "brightness(2.0)";
+    ctx.translate(710, 550);
+    ctx.fillStyle = pattern;
+    ctx.fill();
+    ctx.restore();
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(lst[0] + 24, lst[1] + 32);
+    ctx.lineTo(lst[0] + 80, lst[1] + 10);
+    ctx.lineTo(lst[0] + 104, lst[1] + 32);
+    ctx.closePath();
+    ctx.filter = "brightness(0.5)";
+    ctx.translate(670, 520);
+    ctx.fillStyle = pattern;
+    ctx.fill();
+    ctx.restore();
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(lst[0] + 104, lst[1] - 48);
+    ctx.lineTo(lst[0] + 80, lst[1] + 10);
+    ctx.lineTo(lst[0] + 104, lst[1] + 32);
+    ctx.closePath();
+    ctx.filter = "brightness(1.1)";
+    ctx.translate(690, 510);
+    ctx.fillStyle = pattern;
+    ctx.fill();
+    ctx.restore();
+  },
+  async draw4() {
+    let lst = control.convert(this.position[0], this.position[1]);
+    const img = new Image();
+    img.src = this.texture;
+    await new Promise((resolve) => {
+      img.onload = resolve;
+    });
+    const pattern = ctx.createPattern(img, "repeat");
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(lst[0] + 104, lst[1] - 48);
+    ctx.lineTo(lst[0] + 40, lst[1] - 60);
+    ctx.lineTo(lst[0] + 24, lst[1] - 48);
+    ctx.closePath();
+    ctx.filter = "brightness(1.5)";
+    ctx.translate(690, 510);
+    ctx.fillStyle = pattern;
+    ctx.fill();
+    ctx.restore();
+    ctx.save();
+    ctx.transform(1, 1.36, 0, 1, lst[0] + 24, lst[1] + 32);
+    ctx.filter = "brightness(0.5)";
+    ctx.drawImage(img, 0, -80, 24, 80);
+    ctx.restore();
+    ctx.save();
+    ctx.transform(1.2, 0, 0.75, 1, lst[0] + 24, lst[1] - 48);
+    ctx.filter = "brightness(1.5)";
+    ctx.drawImage(img, 0, 0, 66, 33);
+    ctx.restore();
+    ctx.save();
+    ctx.translate(lst[0] + 48, lst[1] - 16);
+    ctx.drawImage(img, 0, 0, 80, 80);
+    ctx.restore();
+  },
+  async draw5() {
+    let lst = control.convert(this.position[0], this.position[1]);
+    const img = new Image();
+    img.src = this.texture;
+    await new Promise((resolve) => {
+      img.onload = resolve;
+    });
+    const pattern = ctx.createPattern(img, "repeat");
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(lst[0] + 80, lst[1] - 80);
+    ctx.lineTo(lst[0] + 150, lst[1] - 20);
+    ctx.lineTo(lst[0] + 104, lst[1] - 48);
+    ctx.closePath();
+    ctx.filter = "brightness(1.7)";
+    ctx.translate(100, 500);
+    ctx.fillStyle = pattern;
+    ctx.fill();
+    ctx.restore();
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(lst[0] + 104, lst[1] - 48);
+    ctx.lineTo(lst[0] + 150, lst[1] - 20);
+    ctx.lineTo(lst[0] + 104, lst[1] + 32);
+    ctx.closePath();
+    ctx.filter = "brightness(1.6)";
+    ctx.translate(850, 630);
+    ctx.fillStyle = pattern;
+    ctx.fill();
+    ctx.restore();
+    ctx.save();
+    ctx.transform(1, 1.36, 0, 1, lst[0], lst[1]);
+    ctx.filter = "brightness(0.5)";
+    ctx.drawImage(img, 0, -80, 24, 80);
+    ctx.restore();
+    ctx.save();
+    ctx.transform(1.2, 0, 0.75, 1, lst[0], lst[1] - 80);
+    ctx.filter = "brightness(1.5)";
+    ctx.drawImage(img, 0, 0, 66, 33);
+    ctx.restore();
+    ctx.save();
+    ctx.translate(lst[0] + 24, lst[1] - 48);
+    ctx.drawImage(img, 0, 0, 80, 80);
+    ctx.restore();
+  },
+  clear() {
+    ctx.clearRect(0, 0, 1600, 900);
+  },
+};
+export default Sblock;

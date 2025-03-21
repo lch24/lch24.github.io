@@ -68,11 +68,11 @@ const Wall = {
     ctx2.fill();
     ctx2.stroke();
   },
-  clear() {
-    ctx.clearRect(0, 0, 1600, 900);
+  clear(y = 900) {
+    ctx.clearRect(0, 0, 1600, y);
   },
-  clear2() {
-    ctx2.clearRect(0, 0, 1600, 900);
+  clear2(y = 900) {
+    ctx2.clearRect(0, 0, 1600, y);
   },
 };
 export default Wall;

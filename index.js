@@ -10,6 +10,8 @@ const index = {
     oldground: 7,
     wall: 8,
     cegg: 9,
+    block2: 10,
+    strangeblock: 11,
   },
   process: {
     create: 0,

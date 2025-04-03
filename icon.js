@@ -25,6 +25,7 @@ async function init1(x) {
   frame(480, 820 + x);
   frame(560, 820 + x);
   frame(640, 820 + x);
+  frame(720, 820 + x);
   var img = new Image();
   img.src = "3.png";
   await new Promise((resolve) => {
@@ -90,6 +91,12 @@ async function init1(x) {
     img.onload = resolve;
   });
   ctx.drawImage(img, 0, 0, 192, 264, 661, 825 + x, 40, 55);
+  var img = new Image();
+  img.src = "34.png";
+  await new Promise((resolve) => {
+    img.onload = resolve;
+  });
+  ctx.drawImage(img, 0, 0, 1656, 811, 741, 827 + x, 40, 40);
 }
 function init3(x) {
   ctx.beginPath();
@@ -104,6 +111,7 @@ function init3(x) {
   ctx.fillText("陷阱地板", 488, 890 + x);
   ctx.fillText("墙", 588, 892 + x);
   ctx.fillText("残缺方块", 650, 892 + x);
+  ctx.fillText("锯子", 748, 892 + x);
 }
 function init2(x) {
   ctx.beginPath();

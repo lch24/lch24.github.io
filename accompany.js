@@ -5,6 +5,7 @@ import Block from "./block.js";
 import Wall from "./wall.js";
 import { wallocate } from "./wall.js";
 import Sblock from "./strangeblock.js";
+import Saw from "./saw.js";
 const acc = document.createElement("canvas");
 acc.width = 1600;
 acc.height = 900;
@@ -266,88 +267,155 @@ const Accompany = {
               }
             }
             break;
-          case 11: {
-            switch (Sblock.state) {
-              case 1:
-                {
-                  if (
-                    (control.center[lst[0]][lst[1]] == 1 ||
+          case 11:
+            {
+              switch (Sblock.state) {
+                case 1:
+                  {
+                    if (
+                      (control.center[lst[0]][lst[1]] == 1 ||
+                        control.center[lst[0]][lst[1]] == 1.25 ||
+                        control.center[lst[0]][lst[1]] == 1.5 ||
+                        control.center[lst[0]][lst[1]] == 1.75) &&
+                      (control.center[lst[0] + 1][lst[1]] == 1 ||
+                        control.center[lst[0] + 1][lst[1]] == 1.25)
+                    ) {
+                      acdraw11(1, "#ADFF2F", lst);
+                    } else {
+                      acdraw11(1, "#CD2626", lst);
+                    }
+                  }
+                  break;
+                case 2:
+                  {
+                    if (
+                      control.center[lst[0]][lst[1]] == 1 ||
                       control.center[lst[0]][lst[1]] == 1.25 ||
                       control.center[lst[0]][lst[1]] == 1.5 ||
-                      control.center[lst[0]][lst[1]] == 1.75) &&
-                    (control.center[lst[0] + 1][lst[1]] == 1 ||
-                      control.center[lst[0] + 1][lst[1]] == 1.25)
-                  ) {
-                    acdraw11(1, "#ADFF2F", lst);
-                  } else {
-                    acdraw11(1, "#CD2626", lst);
+                      control.center[lst[0]][lst[1]] == 1.75
+                    ) {
+                      acdraw11(2, "#ADFF2F", lst);
+                    } else {
+                      acdraw11(2, "#CD2626", lst);
+                    }
                   }
-                }
-                break;
-              case 2:
-                {
-                  if (
-                    control.center[lst[0]][lst[1]] == 1 ||
-                    control.center[lst[0]][lst[1]] == 1.25 ||
-                    control.center[lst[0]][lst[1]] == 1.5 ||
-                    control.center[lst[0]][lst[1]] == 1.75
-                  ) {
-                    acdraw11(2, "#ADFF2F", lst);
-                  } else {
-                    acdraw11(2, "#CD2626", lst);
+                  break;
+                case 3:
+                  {
+                    if (
+                      (control.center[lst[0]][lst[1]] == 1 ||
+                        control.center[lst[0]][lst[1]] == 1.25 ||
+                        control.center[lst[0]][lst[1]] == 1.5 ||
+                        control.center[lst[0]][lst[1]] == 1.75) &&
+                      (control.center[lst[0]][lst[1] + 1] == 1 ||
+                        control.center[lst[0]][lst[1] + 1] == 1.5)
+                    ) {
+                      acdraw11(3, "#ADFF2F", lst);
+                    } else {
+                      acdraw11(3, "#CD2626", lst);
+                    }
                   }
-                }
-                break;
-              case 3:
-                {
-                  if (
-                    (control.center[lst[0]][lst[1]] == 1 ||
-                      control.center[lst[0]][lst[1]] == 1.25 ||
-                      control.center[lst[0]][lst[1]] == 1.5 ||
-                      control.center[lst[0]][lst[1]] == 1.75) &&
-                    (control.center[lst[0]][lst[1] + 1] == 1 ||
-                      control.center[lst[0]][lst[1] + 1] == 1.5)
-                  ) {
-                    acdraw11(3, "#ADFF2F", lst);
-                  } else {
-                    acdraw11(3, "#CD2626", lst);
+                  break;
+                case 4:
+                  {
+                    if (
+                      (control.center[lst[0]][lst[1]] == 1 ||
+                        control.center[lst[0]][lst[1]] == 1.25 ||
+                        control.center[lst[0]][lst[1]] == 1.5 ||
+                        control.center[lst[0]][lst[1]] == 1.75) &&
+                      (control.center[lst[0]][lst[1] + 1] == 1 ||
+                        control.center[lst[0]][lst[1] + 1] == 1.5)
+                    ) {
+                      acdraw11(4, "#ADFF2F", lst);
+                    } else {
+                      acdraw11(4, "#CD2626", lst);
+                    }
                   }
-                }
-                break;
-              case 4:
-                {
-                  if (
-                    (control.center[lst[0]][lst[1]] == 1 ||
-                      control.center[lst[0]][lst[1]] == 1.25 ||
-                      control.center[lst[0]][lst[1]] == 1.5 ||
-                      control.center[lst[0]][lst[1]] == 1.75) &&
-                    (control.center[lst[0]][lst[1] + 1] == 1 ||
-                      control.center[lst[0]][lst[1] + 1] == 1.5)
-                  ) {
-                    acdraw11(4, "#ADFF2F", lst);
-                  } else {
-                    acdraw11(4, "#CD2626", lst);
+                  break;
+                case 5:
+                  {
+                    if (
+                      (control.center[lst[0]][lst[1]] == 1 ||
+                        control.center[lst[0]][lst[1]] == 1.25 ||
+                        control.center[lst[0]][lst[1]] == 1.5 ||
+                        control.center[lst[0]][lst[1]] == 1.75) &&
+                      (control.center[lst[0] + 1][lst[1]] == 1 ||
+                        control.center[lst[0] + 1][lst[1]] == 1.25)
+                    ) {
+                      acdraw11(5, "#ADFF2F", lst);
+                    } else {
+                      acdraw11(5, "#CD2626", lst);
+                    }
                   }
-                }
-                break;
-              case 5:
-                {
-                  if (
-                    (control.center[lst[0]][lst[1]] == 1 ||
-                      control.center[lst[0]][lst[1]] == 1.25 ||
-                      control.center[lst[0]][lst[1]] == 1.5 ||
-                      control.center[lst[0]][lst[1]] == 1.75) &&
-                    (control.center[lst[0] + 1][lst[1]] == 1 ||
-                      control.center[lst[0] + 1][lst[1]] == 1.25)
-                  ) {
-                    acdraw11(5, "#ADFF2F", lst);
-                  } else {
-                    acdraw11(5, "#CD2626", lst);
-                  }
-                }
-                break;
+                  break;
+              }
             }
-          }
+            break;
+          case 12:
+            {
+              if (Saw.state == 1) {
+                if (lst[1] <= 1) {
+                  acdraw12(1, lst);
+                } else if (
+                  control.center[lst[0]][lst[1]] != 0 &&
+                  control.center[lst[0]][lst[1]] != 2 &&
+                  control.center[lst[0]][lst[1] - 1] != 0 &&
+                  control.center[lst[0]][lst[1] - 1] != 2 &&
+                  control.center[lst[0]][lst[1] - 2] != 0 &&
+                  control.center[lst[0]][lst[1] - 2] != 2 &&
+                  (control.center[lst[0]][lst[1]] * 4) % 4 != 1 &&
+                  (control.center[lst[0]][lst[1]] * 4) % 4 != 3 &&
+                  (control.center[lst[0]][lst[1] - 1] * 4) % 4 != 1 &&
+                  (control.center[lst[0]][lst[1] - 1] * 4) % 4 != 3
+                ) {
+                  if (
+                    Block.state == 3 &&
+                    Block.position[0] == lst[0] &&
+                    Block.position[1] == lst[1] - 1
+                  ) {
+                    acdraw12(1, lst);
+                  } else {
+                    acdraw12(2, lst);
+                  }
+                } else {
+                  acdraw12(1, lst);
+                }
+              } else if (Saw.state == 2) {
+                if (lst[0] >= 12) {
+                  acdraw12(1, lst);
+                } else if (
+                  control.center[lst[0]][lst[1]] != 0 &&
+                  control.center[lst[0]][lst[1]] != 2 &&
+                  control.center[lst[0] - 1][lst[1]] != 0 &&
+                  control.center[lst[0] - 1][lst[1]] != 2 &&
+                  control.center[lst[0] + 1][lst[1]] != 0 &&
+                  control.center[lst[0] + 1][lst[1]] != 2 &&
+                  (control.center[lst[0]][lst[1]] * 4) % 4 != 2 &&
+                  (control.center[lst[0]][lst[1]] * 4) % 4 != 3 &&
+                  (control.center[lst[0] + 1][lst[1]] * 4) % 4 != 2 &&
+                  (control.center[lst[0] + 1][lst[1]] * 4) % 4 != 3
+                ) {
+                  if (
+                    Block.state == 1 &&
+                    Block.position[0] == lst[0] - 1 &&
+                    Block.position[1] == lst[1]
+                  ) {
+                    acdraw12(1, lst);
+                  } else {
+                    acdraw12(2, lst);
+                  }
+                } else {
+                  acdraw12(1, lst);
+                }
+                ctx.beginPath();
+                ctx.roundRect(724, 824, 72, 72, 10);
+                ctx.strokeStyle = "black";
+                ctx.setLineDash([10, 15]);
+                ctx.lineWidth = 1;
+                ctx.stroke();
+              }
+            }
+            break;
         }
       } else {
         switch (this.who) {
@@ -445,25 +513,36 @@ const Accompany = {
               ctx.stroke();
             }
             break;
-          case 11: {
-            switch (Sblock.state) {
-              case 1:
-                acdraw11(1, "#CD2626", lst);
-                break;
-              case 2:
-                acdraw11(2, "#CD2626", lst);
-                break;
-              case 3:
-                acdraw11(3, "#CD2626", lst);
-                break;
-              case 4:
-                acdraw11(4, "#CD2626", lst);
-                break;
-              case 5:
-                acdraw11(5, "#CD2626", lst);
-                break;
+          case 11:
+            {
+              switch (Sblock.state) {
+                case 1:
+                  acdraw11(1, "#CD2626", lst);
+                  break;
+                case 2:
+                  acdraw11(2, "#CD2626", lst);
+                  break;
+                case 3:
+                  acdraw11(3, "#CD2626", lst);
+                  break;
+                case 4:
+                  acdraw11(4, "#CD2626", lst);
+                  break;
+                case 5:
+                  acdraw11(5, "#CD2626", lst);
+                  break;
+              }
+              ctx.roundRect(644, 824, 72, 72, 10);
+              ctx.strokeStyle = "black";
+              ctx.setLineDash([10, 15]);
+              ctx.lineWidth = 1;
+              ctx.stroke();
             }
-            ctx.roundRect(644, 824, 72, 72, 10);
+            break;
+          case 12: {
+            acdraw12(1, lst);
+            ctx.beginPath();
+            ctx.roundRect(724, 824, 72, 72, 10);
             ctx.strokeStyle = "black";
             ctx.setLineDash([10, 15]);
             ctx.lineWidth = 1;
@@ -476,6 +555,9 @@ const Accompany = {
         acdraw2("#ADFF2F", lst);
       }
     }
+  },
+  set(t) {
+    acc.style.zIndex = t;
   },
   clear() {
     ctx.clearRect(0, 0, 1600, 900);
@@ -903,6 +985,59 @@ function acdraw11(state, colour, lst) {
       ctx.fillStyle = color.getLightColor(colour, 0.1);
       ctx.fillRect(0, 0, 80, 80);
       ctx.restore();
+    }
+  }
+}
+async function acdraw12(a, lst) {
+  let ls = control.convert(lst[0], lst[1]);
+  ctx.clearRect(0, 0, 1600, 900);
+  if (a == 1) {
+    switch (Saw.state) {
+      case 1:
+        {
+          const img = new Image();
+          img.src = "./35.png";
+          await new Promise((resolve) => {
+            img.onload = resolve;
+          });
+          ctx.drawImage(img, 0, 0, 1890, 1417, ls[0] - 4, ls[1] - 38, 80, 50);
+        }
+        break;
+      case 2: {
+        const img = new Image();
+        img.src = "./35.png";
+        await new Promise((resolve) => {
+          img.onload = resolve;
+        });
+        ctx.save();
+        ctx.transform(1, 1.36, 0, 1, ls[0], ls[1] - 6);
+        ctx.drawImage(img, 0, 0, 1890, 1417, 0, -31, 30, 50);
+        ctx.restore();
+      }
+    }
+  } else if (a == 2) {
+    switch (Saw.state) {
+      case 1:
+        {
+          const img = new Image();
+          img.src = "./36.png";
+          await new Promise((resolve) => {
+            img.onload = resolve;
+          });
+          ctx.drawImage(img, 0, 0, 1890, 1417, ls[0] - 4, ls[1] - 38, 80, 50);
+        }
+        break;
+      case 2: {
+        const img = new Image();
+        img.src = "./36.png";
+        await new Promise((resolve) => {
+          img.onload = resolve;
+        });
+        ctx.save();
+        ctx.transform(1, 1.36, 0, 1, ls[0], ls[1] - 6);
+        ctx.drawImage(img, 0, 0, 1890, 1417, 0, -31, 30, 50);
+        ctx.restore();
+      }
     }
   }
 }

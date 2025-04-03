@@ -20,6 +20,7 @@ import Teach from "./teach.js";
 import Cegg from "./coloregg.js";
 import Block2 from "./Block2.js";
 import Sblock from "./strangeblock.js";
+import Saw from "./saw.js";
 window.onclick = function (e) {
   if (control.process == 0) {
     let lst = control.locate(e.x - 48, e.y);
@@ -276,6 +277,39 @@ window.onclick = function (e) {
                 }
               }
             }
+            if (Saw.num) {
+              Saw.clear();
+              Saw.clear2();
+              if (Saw.state == 1) {
+                if (
+                  Saw.position[1] >
+                  (Block.state == 3 ? Block.position[1] + 1 : Block.position[1])
+                ) {
+                  Saw.draw2();
+                } else {
+                  if (Saw.position[0] < Block.position[0]) {
+                    Saw.draw2();
+                  } else {
+                    Saw.draw();
+                  }
+                }
+              } else {
+                if (Saw.position[0] < Block.position[0]) {
+                  Saw.draw2();
+                } else {
+                  if (
+                    Saw.position[1] >
+                    (Block.state == 3
+                      ? Block.position[1] + 1
+                      : Block.position[1])
+                  ) {
+                    Saw.draw2();
+                  } else {
+                    Saw.draw();
+                  }
+                }
+              }
+            }
           }
           break;
         case 7:
@@ -369,151 +403,244 @@ window.onclick = function (e) {
             }
           }
           break;
-        case 11: {
-          switch (Sblock.state) {
-            case 1:
-              {
-                if (
-                  (control.center[lst[0]][lst[1]] == 1 ||
+        case 11:
+          {
+            switch (Sblock.state) {
+              case 1:
+                {
+                  if (
+                    (control.center[lst[0]][lst[1]] == 1 ||
+                      control.center[lst[0]][lst[1]] == 1.25 ||
+                      control.center[lst[0]][lst[1]] == 1.5 ||
+                      control.center[lst[0]][lst[1]] == 1.75) &&
+                    (control.center[lst[0] + 1][lst[1]] == 1 ||
+                      control.center[lst[0] + 1][lst[1]] == 1.25)
+                  ) {
+                    if (!Sblock.num) {
+                      Sblock.position = lst;
+                      Sblock.draw1();
+                      Sblock.num = 1;
+                      Sblock.state = 1;
+                      control.choice = 0;
+                      Accompany.clear();
+                    }
+                  }
+                }
+                break;
+              case 2:
+                {
+                  if (
+                    control.center[lst[0]][lst[1]] == 1 ||
                     control.center[lst[0]][lst[1]] == 1.25 ||
                     control.center[lst[0]][lst[1]] == 1.5 ||
-                    control.center[lst[0]][lst[1]] == 1.75) &&
-                  (control.center[lst[0] + 1][lst[1]] == 1 ||
-                    control.center[lst[0] + 1][lst[1]] == 1.25)
-                ) {
-                  if (!Sblock.num) {
-                    Sblock.position = lst;
-                    Sblock.draw1();
-                    Sblock.num = 1;
-                    Sblock.state = 1;
-                    control.choice = 0;
-                    Accompany.clear();
+                    control.center[lst[0]][lst[1]] == 1.75
+                  ) {
+                    if (!Sblock.num) {
+                      Sblock.position = lst;
+                      Sblock.draw2();
+                      Sblock.num = 1;
+                      Sblock.state = 2;
+                      control.choice = 0;
+                      Accompany.clear();
+                    }
                   }
                 }
-              }
-              break;
-            case 2:
-              {
-                if (
-                  control.center[lst[0]][lst[1]] == 1 ||
-                  control.center[lst[0]][lst[1]] == 1.25 ||
-                  control.center[lst[0]][lst[1]] == 1.5 ||
-                  control.center[lst[0]][lst[1]] == 1.75
-                ) {
-                  if (!Sblock.num) {
-                    Sblock.position = lst;
-                    Sblock.draw2();
-                    Sblock.num = 1;
-                    Sblock.state = 2;
-                    control.choice = 0;
-                    Accompany.clear();
+                break;
+              case 3:
+                {
+                  if (
+                    (control.center[lst[0]][lst[1]] == 1 ||
+                      control.center[lst[0]][lst[1]] == 1.25 ||
+                      control.center[lst[0]][lst[1]] == 1.5 ||
+                      control.center[lst[0]][lst[1]] == 1.75) &&
+                    (control.center[lst[0]][lst[1] + 1] == 1 ||
+                      control.center[lst[0]][lst[1] + 1] == 1.5)
+                  ) {
+                    if (!Sblock.num) {
+                      Sblock.position = lst;
+                      Sblock.draw3();
+                      Sblock.num = 1;
+                      Sblock.state = 3;
+                      control.choice = 0;
+                      Accompany.clear();
+                    }
                   }
                 }
-              }
-              break;
-            case 3:
-              {
-                if (
-                  (control.center[lst[0]][lst[1]] == 1 ||
-                    control.center[lst[0]][lst[1]] == 1.25 ||
-                    control.center[lst[0]][lst[1]] == 1.5 ||
-                    control.center[lst[0]][lst[1]] == 1.75) &&
-                  (control.center[lst[0]][lst[1] + 1] == 1 ||
-                    control.center[lst[0]][lst[1] + 1] == 1.5)
-                ) {
-                  if (!Sblock.num) {
-                    Sblock.position = lst;
-                    Sblock.draw3();
-                    Sblock.num = 1;
-                    Sblock.state = 3;
-                    control.choice = 0;
-                    Accompany.clear();
+                break;
+              case 4:
+                {
+                  if (
+                    (control.center[lst[0]][lst[1]] == 1 ||
+                      control.center[lst[0]][lst[1]] == 1.25 ||
+                      control.center[lst[0]][lst[1]] == 1.5 ||
+                      control.center[lst[0]][lst[1]] == 1.75) &&
+                    (control.center[lst[0]][lst[1] + 1] == 1 ||
+                      control.center[lst[0]][lst[1] + 1] == 1.5)
+                  ) {
+                    if (!Sblock.num) {
+                      Sblock.position = lst;
+                      Sblock.draw4();
+                      Sblock.num = 1;
+                      Sblock.state = 4;
+                      control.choice = 0;
+                      Accompany.clear();
+                    }
                   }
                 }
-              }
-              break;
-            case 4:
-              {
-                if (
-                  (control.center[lst[0]][lst[1]] == 1 ||
-                    control.center[lst[0]][lst[1]] == 1.25 ||
-                    control.center[lst[0]][lst[1]] == 1.5 ||
-                    control.center[lst[0]][lst[1]] == 1.75) &&
-                  (control.center[lst[0]][lst[1] + 1] == 1 ||
-                    control.center[lst[0]][lst[1] + 1] == 1.5)
-                ) {
-                  if (!Sblock.num) {
-                    Sblock.position = lst;
-                    Sblock.draw4();
-                    Sblock.num = 1;
-                    Sblock.state = 4;
-                    control.choice = 0;
-                    Accompany.clear();
+                break;
+              case 5:
+                {
+                  if (
+                    (control.center[lst[0]][lst[1]] == 1 ||
+                      control.center[lst[0]][lst[1]] == 1.25 ||
+                      control.center[lst[0]][lst[1]] == 1.5 ||
+                      control.center[lst[0]][lst[1]] == 1.75) &&
+                    (control.center[lst[0] + 1][lst[1]] == 1 ||
+                      control.center[lst[0] + 1][lst[1]] == 1.25)
+                  ) {
+                    if (!Sblock.num) {
+                      Sblock.position = lst;
+                      Sblock.draw5();
+                      Sblock.num = 1;
+                      Sblock.state = 5;
+                      control.choice = 0;
+                      Accompany.clear();
+                    }
                   }
                 }
-              }
-              break;
-            case 5:
-              {
+                break;
+            }
+
+            Wall.clear();
+            Wall.clear2();
+            for (let i = 0; i < 14; i++) {
+              for (let j = 0; j < 19; j++) {
                 if (
-                  (control.center[lst[0]][lst[1]] == 1 ||
-                    control.center[lst[0]][lst[1]] == 1.25 ||
-                    control.center[lst[0]][lst[1]] == 1.5 ||
-                    control.center[lst[0]][lst[1]] == 1.75) &&
-                  (control.center[lst[0] + 1][lst[1]] == 1 ||
-                    control.center[lst[0] + 1][lst[1]] == 1.25)
+                  (control.center[i][j] * 4) % 4 == 1 ||
+                  (control.center[i][j] * 4) % 4 == 3
                 ) {
-                  if (!Sblock.num) {
-                    Sblock.position = lst;
-                    Sblock.draw5();
-                    Sblock.num = 1;
-                    Sblock.state = 5;
-                    control.choice = 0;
-                    Accompany.clear();
-                  }
-                }
-              }
-              break;
-          }
-          Wall.clear();
-          Wall.clear2();
-          for (let i = 0; i < 14; i++) {
-            for (let j = 0; j < 19; j++) {
-              if (
-                (control.center[i][j] * 4) % 4 == 1 ||
-                (control.center[i][j] * 4) % 4 == 3
-              ) {
-                Wall.position = [i, j];
-                if (
-                  j >
-                  (Sblock.state == 3 || Sblock.state == 4
-                    ? Sblock.position[1] + 1
-                    : Sblock.position[1])
-                ) {
-                  Wall.draw1();
-                } else {
-                  if (i < Sblock.position[0]) {
+                  Wall.position = [i, j];
+                  if (
+                    j >
+                    (Sblock.state == 3 || Sblock.state == 4
+                      ? Sblock.position[1] + 1
+                      : Sblock.position[1])
+                  ) {
                     Wall.draw1();
                   } else {
-                    Wall.draw3();
+                    if (i < Sblock.position[0]) {
+                      Wall.draw1();
+                    } else {
+                      Wall.draw3();
+                    }
                   }
-                }
-              } else if (
-                (control.center[i][j] * 4) % 4 == 2 ||
-                (control.center[i][j] * 4) % 4 == 3
-              ) {
-                Wall.position = [i, j];
-                if (i <= Sblock.position[0]) {
-                  Wall.draw2();
-                } else {
-                  if (j > Sblock.position[1]) {
+                } else if (
+                  (control.center[i][j] * 4) % 4 == 2 ||
+                  (control.center[i][j] * 4) % 4 == 3
+                ) {
+                  Wall.position = [i, j];
+                  if (i <= Sblock.position[0]) {
                     Wall.draw2();
                   } else {
-                    Wall.draw4();
+                    if (j > Sblock.position[1]) {
+                      Wall.draw2();
+                    } else {
+                      Wall.draw4();
+                    }
                   }
                 }
               }
             }
+          }
+          break;
+        case 12: {
+          let lst = wallocate(e.x - 48, e.y);
+          Saw.position = lst;
+          let ls = control.convert(lst[0], lst[1]);
+          if (Math.abs(e.x - 48 - ls[0]) < 2 * Math.abs(e.y - ls[1])) {
+            Saw.state = 2;
+          } else {
+            Saw.state = 1;
+          }
+          if (Saw.state == 1) {
+            if (lst[1] <= 1) {
+            } else if (
+              control.center[lst[0]][lst[1]] != 0 &&
+              control.center[lst[0]][lst[1]] != 2 &&
+              control.center[lst[0]][lst[1] - 1] != 0 &&
+              control.center[lst[0]][lst[1] - 1] != 2 &&
+              control.center[lst[0]][lst[1] - 2] != 0 &&
+              control.center[lst[0]][lst[1] - 2] != 2 &&
+              (control.center[lst[0]][lst[1]] * 4) % 4 != 1 &&
+              (control.center[lst[0]][lst[1]] * 4) % 4 != 3 &&
+              (control.center[lst[0]][lst[1] - 1] * 4) % 4 != 1 &&
+              (control.center[lst[0]][lst[1] - 1] * 4) % 4 != 3
+            ) {
+              if (
+                Block.state == 3 &&
+                Block.position[0] == lst[0] &&
+                Block.position[1] == lst[1] - 1
+              ) {
+              } else {
+                if (
+                  lst[1] >
+                  (Block.state == 3 ? Block.position[1] + 1 : Block.position[1])
+                ) {
+                  Saw.draw2();
+                } else {
+                  if (lst[0] < Block.position[0]) {
+                    Saw.draw2();
+                  } else {
+                    Saw.draw();
+                  }
+                }
+                Saw.num = 1;
+                control.choice = 0;
+                Accompany.who = 0;
+                Accompany.clear();
+              }
+            }
+          } else if (Saw.state == 2) {
+            if (lst[0] == 0 || lst[0] >= 12) {
+            } else if (
+              control.center[lst[0]][lst[1]] != 0 &&
+              control.center[lst[0]][lst[1]] != 2 &&
+              control.center[lst[0] - 1][lst[1]] != 0 &&
+              control.center[lst[0] - 1][lst[1]] != 2 &&
+              control.center[lst[0] + 1][lst[1]] != 0 &&
+              control.center[lst[0] + 1][lst[1]] != 2 &&
+              (control.center[lst[0]][lst[1]] * 4) % 4 != 2 &&
+              (control.center[lst[0]][lst[1]] * 4) % 4 != 3 &&
+              (control.center[lst[0]][lst[1] + 1] * 4) % 4 != 2 &&
+              (control.center[lst[0]][lst[1] + 1] * 4) % 4 != 3
+            ) {
+              if (
+                Block.state == 1 &&
+                Block.position[0] == lst[0] - 1 &&
+                Block.position[1] == lst[1]
+              ) {
+              } else {
+                if (lst[0] <= Block.position[0]) {
+                  Saw.draw2();
+                } else {
+                  if (lst[1] > Block.position[1]) {
+                    Saw.draw2();
+                  } else {
+                    Saw.draw();
+                  }
+                }
+                Saw.num = 1;
+                control.choice = 0;
+                Accompany.who = 0;
+                Accompany.clear();
+              }
+            }
+            ctx.beginPath();
+            ctx.roundRect(724, 824, 72, 72, 10);
+            ctx.strokeStyle = "black";
+            ctx.setLineDash([10, 15]);
+            ctx.lineWidth = 1;
+            ctx.stroke();
           }
         }
       }
@@ -558,6 +685,7 @@ window.onclick = function (e) {
         ctx.setLineDash([10, 15]);
         ctx.lineWidth = 1;
         ctx.stroke();
+        5;
       } else if ((e.x > 370) & (e.x < 466) && e.y < 898 && e.y > 822) {
         control.choice = 5;
         Accompany.who = 5;
@@ -612,6 +740,20 @@ window.onclick = function (e) {
         ctx.setLineDash([10, 15]);
         ctx.lineWidth = 1;
         ctx.stroke();
+      } else if ((e.x > 770) & (e.x < 866) && e.y < 898 && e.y > 822) {
+        if (!Saw.num) {
+          control.choice = 12;
+          Accompany.who = 12;
+          Accompany.switch = 1;
+          ctx.beginPath();
+          ctx.roundRect(724, 824, 72, 72, 10);
+          ctx.strokeStyle = "black";
+          ctx.setLineDash([10, 15]);
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        } else {
+          window.alert("一张地图最多有一个锯子");
+        }
       } else if ((e.x > 1400) & (e.x < 1526) && e.y < 68 && e.y > 2) {
         if (End.num >= Block.num + Sblock.num + Block2.num) {
           Accompany.clear();
@@ -807,6 +949,13 @@ window.onclick = function (e) {
             Button.bridge = [];
             Wall.clear(900);
             Wall.clear2(900);
+            Saw.clear();
+            Saw.clear2();
+            Saw.position = [];
+            Saw.num = 0;
+            Sblock.num = 0;
+            Sblock.clear();
+            Sblock.position = [];
             clx();
             for (let i = 0; i < 14; i++) {
               for (let j = 0; j < 20; j++) {
@@ -917,6 +1066,13 @@ window.onclick = function (e) {
               Button.bridge = [];
               Wall.clear();
               Wall.clear2();
+              Saw.clear();
+              Saw.clear2();
+              Saw.position = [];
+              Saw.num = 0;
+              Sblock.num = 0;
+              Sblock.clear();
+              Sblock.position = [];
               clx();
               for (let i = 0; i < 14; i++) {
                 for (let j = 0; j < 20; j++) {
@@ -990,6 +1146,13 @@ window.onclick = function (e) {
               Wall.position = [];
               Wall.clear();
               Wall.clear2();
+              Saw.clear();
+              Saw.clear2();
+              Saw.position = [];
+              Saw.num = 0;
+              Sblock.num = 0;
+              Sblock.clear();
+              Sblock.position = [];
               clx();
               clear();
               for (let i = 0; i < 14; i++) {
@@ -1030,6 +1193,13 @@ window.onclick = function (e) {
             Button.bridge = [];
             Wall.clear();
             Wall.clear2();
+            Saw.clear();
+            Saw.clear2();
+            Saw.position = [];
+            Saw.num = 0;
+            Sblock.num = 0;
+            Sblock.clear();
+            Sblock.position = [];
             clx();
             clear();
             Cegg.clear();
@@ -1072,6 +1242,13 @@ window.onclick = function (e) {
             Button.bridge = [];
             Wall.clear();
             Wall.clear2();
+            Saw.clear();
+            Saw.clear2();
+            Saw.position = [];
+            Saw.num = 0;
+            Sblock.num = 0;
+            Sblock.clear();
+            Sblock.position = [];
             clx();
             for (let i = 0; i < 14; i++) {
               for (let j = 0; j < 20; j++) {
@@ -1127,6 +1304,15 @@ window.onmousemove = function (e) {
       Wall.type = 2;
     } else {
       Wall.type = 1;
+    }
+  }
+  if (control.choice == 12) {
+    Lst = wallocate(e.x - 48, e.y);
+    let lst = control.convert(Lst[0], Lst[1]);
+    if (Math.abs(e.x - 48 - lst[0]) < 2 * Math.abs(e.y - lst[1])) {
+      Saw.state = 2;
+    } else {
+      Saw.state = 1;
     }
   }
   Accompany.who = control.choice;
@@ -1278,282 +1464,694 @@ window.onkeydown = function (e) {
   }
   if (control.process == 1 || control.process == 4) {
     if (Block.num) {
-      switch (Block.state) {
-        case 1:
-          {
-            let [x, y] = [Block.position[0], Block.position[1]];
-            switch (e.key) {
-              case "a":
-              case "A":
-              case "ArrowLeft":
-                {
-                  if (x == 0) {
-                  } else {
-                    if (
-                      control.center[x - 1][y] &&
-                      (control.center[x][y] * 4) % 4 != 2 &&
-                      (control.center[x][y] * 4) % 4 != 3
-                    ) {
-                      Block.clear();
-                      Block.position = [x - 1, y];
-                      Block.state = 2;
-                      Block.draw2();
+      if (Block.split == 0) {
+        switch (Block.state) {
+          case 1:
+            {
+              let [x, y] = [Block.position[0], Block.position[1]];
+              switch (e.key) {
+                case "a":
+                case "A":
+                case "ArrowLeft":
+                  {
+                    if (x == 0) {
+                    } else {
+                      if (
+                        control.center[x - 1][y] &&
+                        (control.center[x][y] * 4) % 4 != 2 &&
+                        (control.center[x][y] * 4) % 4 != 3
+                      ) {
+                        if (
+                          Saw.num &&
+                          Saw.state == 2 &&
+                          Saw.position[0] == x &&
+                          Saw.position[1] == y
+                        ) {
+                        } else {
+                          Block.clear();
+                          Block.position = [x - 1, y];
+                          Block.state = 2;
+                          Block.draw2();
+                          const audio = new Audio("move.wav");
+                          audio.play();
+                        }
+                      }
                     }
                   }
-                }
-                break;
-              case "w":
-              case "W":
-              case "ArrowUp":
-                {
-                  if (y == 0) {
-                  } else {
-                    if (
-                      control.center[x][y - 1] &&
-                      control.center[x + 1][y - 1] &&
-                      (control.center[x][y] * 4) % 4 != 1 &&
-                      (control.center[x + 1][y - 1] * 4) % 4 != 2 &&
-                      (control.center[x + 1][y - 1] * 4) % 4 != 3 &&
-                      (control.center[x][y] * 4) % 4 != 3 &&
-                      (control.center[x + 1][y] * 4) % 4 != 1 &&
-                      (control.center[x + 1][y] * 4) % 4 != 3
-                    ) {
-                      Block.clear();
-                      Block.position = [x, y - 1];
-                      Block.draw1();
+                  break;
+                case "w":
+                case "W":
+                case "ArrowUp":
+                  {
+                    if (y == 0) {
+                    } else {
+                      if (
+                        control.center[x][y - 1] &&
+                        control.center[x + 1][y - 1] &&
+                        (control.center[x][y] * 4) % 4 != 1 &&
+                        (control.center[x + 1][y - 1] * 4) % 4 != 2 &&
+                        (control.center[x + 1][y - 1] * 4) % 4 != 3 &&
+                        (control.center[x][y] * 4) % 4 != 3 &&
+                        (control.center[x + 1][y] * 4) % 4 != 1 &&
+                        (control.center[x + 1][y] * 4) % 4 != 3
+                      ) {
+                        if (
+                          Saw.num &&
+                          Saw.state == 1 &&
+                          ((Saw.position[0] == x && Saw.position[1] == y) ||
+                            (Saw.position[0] == x + 1 && Saw.position[1] == y))
+                        ) {
+                        } else {
+                          Block.clear();
+                          Block.position = [x, y - 1];
+                          Block.draw1();
+                          const audio = new Audio("move.wav");
+                          audio.play();
+                        }
+                      }
                     }
                   }
-                }
-                break;
-              case "s":
-              case "S":
-              case "ArrowDown":
-                {
-                  if (y == 18) {
-                  } else {
-                    if (
-                      control.center[x][y + 1] &&
-                      control.center[x + 1][y + 1] &&
-                      (control.center[x][y + 1] * 4) % 4 != 1 &&
-                      (control.center[x][y + 1] * 4) % 4 != 3 &&
-                      (control.center[x + 1][y + 1] * 4) % 4 != 1 &&
-                      (control.center[x + 1][y + 1] * 4) % 4 != 3 &&
-                      (control.center[x + 1][y + 1] * 4) % 4 != 2
-                    ) {
-                      Block.clear();
-                      Block.position = [x, y + 1];
-                      Block.draw1();
+                  break;
+                case "s":
+                case "S":
+                case "ArrowDown":
+                  {
+                    if (y == 18) {
+                    } else {
+                      if (
+                        control.center[x][y + 1] &&
+                        control.center[x + 1][y + 1] &&
+                        (control.center[x][y + 1] * 4) % 4 != 1 &&
+                        (control.center[x][y + 1] * 4) % 4 != 3 &&
+                        (control.center[x + 1][y + 1] * 4) % 4 != 1 &&
+                        (control.center[x + 1][y + 1] * 4) % 4 != 3 &&
+                        (control.center[x + 1][y + 1] * 4) % 4 != 2
+                      ) {
+                        if (
+                          Saw.num &&
+                          Saw.state == 1 &&
+                          ((Saw.position[0] == x && Saw.position[1] == y - 1) ||
+                            (Saw.position[0] == x + 1 &&
+                              Saw.position[1] == y - 1))
+                        ) {
+                        } else {
+                          Block.clear();
+                          Block.position = [x, y + 1];
+                          Block.draw1();
+                          const audio = new Audio("move.wav");
+                          audio.play();
+                        }
+                      }
                     }
                   }
-                }
-                break;
-              case "d":
-              case "D":
-              case "ArrowRight":
-                {
-                  if (x >= 12) {
-                  } else {
-                    if (
-                      control.center[x + 2][y] &&
-                      (control.center[x + 2][y] * 4) % 4 != 2 &&
-                      (control.center[x + 2][y] * 4) % 4 != 3
-                    ) {
-                      Block.clear();
-                      Block.position = [x + 2, y];
-                      Block.state = 2;
-                      Block.draw2();
+                  break;
+                case "d":
+                case "D":
+                case "ArrowRight":
+                  {
+                    if (x >= 12) {
+                    } else {
+                      if (
+                        control.center[x + 2][y] &&
+                        (control.center[x + 2][y] * 4) % 4 != 2 &&
+                        (control.center[x + 2][y] * 4) % 4 != 3
+                      ) {
+                        if (
+                          Saw.num &&
+                          Saw.state == 2 &&
+                          Saw.position[0] == x + 2 &&
+                          Saw.position[1] == y
+                        ) {
+                        } else {
+                          Block.clear();
+                          Block.position = [x + 2, y];
+                          Block.state = 2;
+                          Block.draw2();
+                          const audio = new Audio("move.wav");
+                          audio.play();
+                        }
+                      }
                     }
                   }
-                }
-                break;
+                  break;
+              }
             }
-          }
-          break;
-        case 2:
-          {
-            let [x, y] = [Block.position[0], Block.position[1]];
-            switch (e.key) {
-              case "a":
-              case "A":
-              case "ArrowLeft":
-                {
-                  if (x <= 1) {
-                  } else {
-                    if (
-                      control.center[x - 1][y] &&
-                      control.center[x - 2][y] &&
-                      (control.center[x][y] * 4) % 4 != 2 &&
-                      (control.center[x][y] * 4) % 4 != 3 &&
-                      (control.center[x - 1][y] * 4) % 4 != 2 &&
-                      (control.center[x - 1][y] * 4) % 4 != 3
-                    ) {
-                      Block.clear();
-                      Block.position = [x - 2, y];
-                      Block.state = 1;
-                      Block.draw1();
+            break;
+          case 2:
+            {
+              let [x, y] = [Block.position[0], Block.position[1]];
+              switch (e.key) {
+                case "a":
+                case "A":
+                case "ArrowLeft":
+                  {
+                    if (x <= 1) {
+                    } else {
+                      if (
+                        control.center[x - 1][y] &&
+                        control.center[x - 2][y] &&
+                        (control.center[x][y] * 4) % 4 != 2 &&
+                        (control.center[x][y] * 4) % 4 != 3 &&
+                        (control.center[x - 1][y] * 4) % 4 != 2 &&
+                        (control.center[x - 1][y] * 4) % 4 != 3
+                      ) {
+                        if (
+                          Saw.num &&
+                          Saw.state == 2 &&
+                          Saw.position[0] == x &&
+                          Saw.position[1] == y
+                        ) {
+                        } else {
+                          Block.clear();
+                          Block.position = [x - 2, y];
+                          Block.state = 1;
+                          Block.draw1();
+                          const audio = new Audio("move.wav");
+                          audio.play();
+                        }
+                      }
                     }
                   }
-                }
-                break;
-              case "w":
-              case "W":
-              case "ArrowUp":
-                {
-                  if (y <= 1) {
-                  } else {
-                    if (
-                      control.center[x][y - 1] &&
-                      control.center[x][y - 2] &&
-                      (control.center[x][y] * 4) % 4 != 1 &&
-                      (control.center[x][y] * 4) % 4 != 3 &&
-                      (control.center[x][y - 1] * 4) % 4 != 1 &&
-                      (control.center[x][y - 1] * 4) % 4 != 3
-                    ) {
-                      Block.clear();
-                      Block.position = [x, y - 2];
-                      Block.state = 3;
-                      Block.draw3();
+                  break;
+                case "w":
+                case "W":
+                case "ArrowUp":
+                  {
+                    if (y <= 1) {
+                    } else {
+                      if (
+                        control.center[x][y - 1] &&
+                        control.center[x][y - 2] &&
+                        (control.center[x][y] * 4) % 4 != 1 &&
+                        (control.center[x][y] * 4) % 4 != 3 &&
+                        (control.center[x][y - 1] * 4) % 4 != 1 &&
+                        (control.center[x][y - 1] * 4) % 4 != 3
+                      ) {
+                        if (
+                          Saw.num &&
+                          Saw.state == 1 &&
+                          Saw.position[0] == x &&
+                          Saw.position[1] == y
+                        ) {
+                        } else {
+                          Block.clear();
+                          Block.position = [x, y - 2];
+                          Block.state = 3;
+                          Block.draw3();
+                          const audio = new Audio("move.wav");
+                          audio.play();
+                        }
+                      }
                     }
                   }
-                }
-                break;
-              case "s":
-              case "S":
-              case "ArrowDown":
-                {
-                  if (y >= 17) {
-                  } else {
-                    if (
-                      control.center[x][y + 1] &&
-                      control.center[x][y + 2] &&
-                      (control.center[x][y + 1] * 4) % 4 != 1 &&
-                      (control.center[x][y + 1] * 4) % 4 != 3 &&
-                      (control.center[x][y + 2] * 4) % 4 != 1 &&
-                      (control.center[x][y + 2] * 4) % 4 != 3
-                    ) {
-                      Block.clear();
-                      Block.position = [x, y + 1];
-                      Block.state = 3;
-                      Block.draw3();
+                  break;
+                case "s":
+                case "S":
+                case "ArrowDown":
+                  {
+                    if (y >= 17) {
+                    } else {
+                      if (
+                        control.center[x][y + 1] &&
+                        control.center[x][y + 2] &&
+                        (control.center[x][y + 1] * 4) % 4 != 1 &&
+                        (control.center[x][y + 1] * 4) % 4 != 3 &&
+                        (control.center[x][y + 2] * 4) % 4 != 1 &&
+                        (control.center[x][y + 2] * 4) % 4 != 3
+                      ) {
+                        if (
+                          Saw.num &&
+                          Saw.state == 1 &&
+                          Saw.position[0] == x &&
+                          Saw.position[1] == y - 1
+                        ) {
+                        } else {
+                          Block.clear();
+                          Block.position = [x, y + 1];
+                          Block.state = 3;
+                          Block.draw3();
+                          const audio = new Audio("move.wav");
+                          audio.play();
+                        }
+                      }
                     }
                   }
-                }
-                break;
-              case "d":
-              case "D":
-              case "ArrowRight":
-                {
-                  if (x >= 12) {
-                  } else {
-                    if (
-                      control.center[x + 1][y] &&
-                      control.center[x + 2][y] &&
-                      (control.center[x + 1][y] * 4) % 4 != 2 &&
-                      (control.center[x + 1][y] * 4) % 4 != 3 &&
-                      (control.center[x + 2][y] * 4) % 4 != 2 &&
-                      (control.center[x + 2][y] * 4) % 4 != 3
-                    ) {
-                      Block.clear();
-                      Block.position = [x + 1, y];
-                      Block.state = 1;
-                      Block.draw1();
+                  break;
+                case "d":
+                case "D":
+                case "ArrowRight":
+                  {
+                    if (x >= 12) {
+                    } else {
+                      if (
+                        control.center[x + 1][y] &&
+                        control.center[x + 2][y] &&
+                        (control.center[x + 1][y] * 4) % 4 != 2 &&
+                        (control.center[x + 1][y] * 4) % 4 != 3 &&
+                        (control.center[x + 2][y] * 4) % 4 != 2 &&
+                        (control.center[x + 2][y] * 4) % 4 != 3
+                      ) {
+                        if (
+                          Saw.num &&
+                          Saw.state == 2 &&
+                          Saw.position[0] == x + 1 &&
+                          Saw.position[1] == y
+                        ) {
+                        } else {
+                          Block.clear();
+                          Block.position = [x + 1, y];
+                          Block.state = 1;
+                          Block.draw1();
+                          const audio = new Audio("move.wav");
+                          audio.play();
+                        }
+                      }
                     }
                   }
-                }
-                break;
+                  break;
+              }
             }
-          }
-          break;
-        case 3:
-          {
-            let [x, y] = [Block.position[0], Block.position[1]];
-            switch (e.key) {
-              case "a":
-              case "A":
-              case "ArrowLeft":
-                {
-                  if (x == 0) {
-                  } else {
-                    if (
-                      control.center[x - 1][y] &&
-                      control.center[x - 1][y + 1] &&
-                      (control.center[x][y] * 4) % 4 != 2 &&
-                      (control.center[x][y] * 4) % 4 != 3 &&
-                      (control.center[x - 1][y + 1] * 4) % 4 != 1 &&
-                      (control.center[x - 1][y + 1] * 4) % 4 != 3 &&
-                      (control.center[x][y + 1] * 4) % 4 != 2 &&
-                      (control.center[x][y + 1] * 4) % 4 != 3
-                    ) {
-                      Block.clear();
-                      Block.position = [x - 1, y];
-                      Block.draw3();
+            break;
+          case 3:
+            {
+              let [x, y] = [Block.position[0], Block.position[1]];
+              switch (e.key) {
+                case "a":
+                case "A":
+                case "ArrowLeft":
+                  {
+                    if (x == 0) {
+                    } else {
+                      if (
+                        control.center[x - 1][y] &&
+                        control.center[x - 1][y + 1] &&
+                        (control.center[x][y] * 4) % 4 != 2 &&
+                        (control.center[x][y] * 4) % 4 != 3 &&
+                        (control.center[x - 1][y + 1] * 4) % 4 != 1 &&
+                        (control.center[x - 1][y + 1] * 4) % 4 != 3 &&
+                        (control.center[x][y + 1] * 4) % 4 != 2 &&
+                        (control.center[x][y + 1] * 4) % 4 != 3
+                      ) {
+                        if (
+                          Saw.num &&
+                          Saw.state == 2 &&
+                          ((Saw.position[0] == x && Saw.position[1] == y) ||
+                            (Saw.position[0] == x && Saw.position[1] == y + 1))
+                        ) {
+                        } else {
+                          Block.clear();
+                          Block.position = [x - 1, y];
+                          Block.draw3();
+                          const audio = new Audio("move.wav");
+                          audio.play();
+                        }
+                      }
                     }
                   }
-                }
-                break;
-              case "w":
-              case "W":
-              case "ArrowUp":
-                {
-                  if (y == 0) {
-                  } else {
-                    if (
-                      control.center[x][y - 1] &&
-                      (control.center[x][y] * 4) % 4 != 1 &&
-                      (control.center[x][y] * 4) % 4 != 3
-                    ) {
-                      Block.clear();
-                      Block.position = [x, y - 1];
-                      Block.state = 2;
-                      Block.draw2();
+                  break;
+                case "w":
+                case "W":
+                case "ArrowUp":
+                  {
+                    if (y == 0) {
+                    } else {
+                      if (
+                        control.center[x][y - 1] &&
+                        (control.center[x][y] * 4) % 4 != 1 &&
+                        (control.center[x][y] * 4) % 4 != 3
+                      ) {
+                        if (
+                          Saw.num &&
+                          Saw.state == 1 &&
+                          Saw.position[0] == x &&
+                          Saw.position[1] == y
+                        ) {
+                        } else {
+                          Block.clear();
+                          Block.position = [x, y - 1];
+                          Block.state = 2;
+                          Block.draw2();
+                          const audio = new Audio("move.wav");
+                          audio.play();
+                        }
+                      }
                     }
                   }
-                }
-                break;
-              case "s":
-              case "S":
-              case "ArrowDown":
-                {
-                  if (y >= 17) {
-                  } else {
-                    if (
-                      control.center[x][y + 2] &&
-                      (control.center[x][y + 2] * 4) % 4 != 1 &&
-                      (control.center[x][y + 2] * 4) % 4 != 3
-                    ) {
-                      Block.clear();
-                      Block.position = [x, y + 2];
-                      Block.state = 2;
-                      Block.draw2();
+                  break;
+                case "s":
+                case "S":
+                case "ArrowDown":
+                  {
+                    if (y >= 17) {
+                    } else {
+                      if (
+                        control.center[x][y + 2] &&
+                        (control.center[x][y + 2] * 4) % 4 != 1 &&
+                        (control.center[x][y + 2] * 4) % 4 != 3
+                      ) {
+                        if (
+                          Saw.num &&
+                          Saw.state == 1 &&
+                          Saw.position[0] == x &&
+                          Saw.position[1] == y + 2
+                        ) {
+                        } else {
+                          Block.clear();
+                          Block.position = [x, y + 2];
+                          Block.state = 2;
+                          Block.draw2();
+                          const audio = new Audio("move.wav");
+                          audio.play();
+                        }
+                      }
                     }
                   }
-                }
-                break;
-              case "d":
-              case "D":
-              case "ArrowRight":
-                {
-                  if (x == 13) {
-                  } else {
-                    if (
-                      control.center[x + 1][y] &&
-                      control.center[x + 1][y + 1] &&
-                      (control.center[x + 1][y] * 4) % 4 != 2 &&
-                      (control.center[x + 1][y] * 4) % 4 != 3 &&
-                      (control.center[x + 1][y + 1] * 4) % 4 != 2 &&
-                      (control.center[x + 1][y + 1] * 4) % 4 != 3 &&
-                      (control.center[x + 1][y + 1] * 4) % 4 != 1
-                    ) {
-                      Block.clear();
-                      Block.position = [x + 1, y];
-                      Block.draw3();
+                  break;
+                case "d":
+                case "D":
+                case "ArrowRight":
+                  {
+                    if (x == 13) {
+                    } else {
+                      if (
+                        control.center[x + 1][y] &&
+                        control.center[x + 1][y + 1] &&
+                        (control.center[x + 1][y] * 4) % 4 != 2 &&
+                        (control.center[x + 1][y] * 4) % 4 != 3 &&
+                        (control.center[x + 1][y + 1] * 4) % 4 != 2 &&
+                        (control.center[x + 1][y + 1] * 4) % 4 != 3 &&
+                        (control.center[x + 1][y + 1] * 4) % 4 != 1
+                      ) {
+                        if (
+                          Saw.num &&
+                          Saw.state == 2 &&
+                          ((Saw.position[0] == x + 1 && Saw.position[1] == y) ||
+                            (Saw.position[0] == x + 1 &&
+                              Saw.position[1] == y + 1))
+                        ) {
+                        } else {
+                          Block.clear();
+                          Block.position = [x + 1, y];
+                          Block.draw3();
+                          const audio = new Audio("move.wav");
+                          audio.play();
+                        }
+                      }
                     }
                   }
-                }
-                break;
+                  break;
+              }
             }
-          }
-          break;
+            break;
+        }
+      } else if (Block.split == 1) {
+        switch (Block.state) {
+          case 1:
+            {
+              let [x, y] = [Block.position[0], Block.position[1]];
+              switch (e.key) {
+                case "a":
+                case "A":
+                case "ArrowLeft":
+                  {
+                    if (x == 0) {
+                    } else {
+                      if (
+                        control.center[x - 1][y] &&
+                        (control.center[x][y] * 4) % 4 != 2 &&
+                        (control.center[x][y] * 4) % 4 != 3
+                      ) {
+                        Block.clear();
+                        Block.position = [x - 1, y];
+                        Block.state = 2;
+                        Block.draws2();
+                        const audio = new Audio("move.wav");
+                        audio.play();
+                      }
+                    }
+                  }
+                  break;
+                case "w":
+                case "W":
+                case "ArrowUp":
+                  {
+                    if (y == 0) {
+                    } else {
+                      if (
+                        control.center[x][y - 1] &&
+                        control.center[x + 2][y - 1] &&
+                        (control.center[x][y] * 4) % 4 != 1 &&
+                        (control.center[x][y] * 4) % 4 != 3 &&
+                        (control.center[x + 2][y] * 4) % 4 != 1 &&
+                        (control.center[x + 2][y] * 4) % 4 != 3
+                      ) {
+                        Block.clear();
+                        Block.position = [x, y - 1];
+                        Block.draws1();
+                        const audio = new Audio("move.wav");
+                        audio.play();
+                      }
+                    }
+                  }
+                  break;
+                case "s":
+                case "S":
+                case "ArrowDown":
+                  {
+                    if (y == 18) {
+                    } else {
+                      if (
+                        control.center[x][y + 1] &&
+                        control.center[x + 2][y + 1] &&
+                        (control.center[x][y + 1] * 4) % 4 != 1 &&
+                        (control.center[x][y + 1] * 4) % 4 != 3 &&
+                        (control.center[x + 2][y + 1] * 4) % 4 != 1 &&
+                        (control.center[x + 2][y + 1] * 4) % 4 != 3
+                      ) {
+                        Block.clear();
+                        Block.position = [x, y + 1];
+                        Block.draws1();
+                        const audio = new Audio("move.wav");
+                        audio.play();
+                      }
+                    }
+                  }
+                  break;
+                case "d":
+                case "D":
+                case "ArrowRight":
+                  {
+                    if (x >= 11) {
+                    } else {
+                      if (
+                        control.center[x + 3][y] &&
+                        (control.center[x + 3][y] * 4) % 4 != 2 &&
+                        (control.center[x + 3][y] * 4) % 4 != 3
+                      ) {
+                        Block.clear();
+                        Block.position = [x + 3, y];
+                        Block.state = 2;
+                        Block.draws2();
+                        const audio = new Audio("move.wav");
+                        audio.play();
+                      }
+                    }
+                  }
+                  break;
+              }
+            }
+            break;
+          case 2:
+            {
+              let [x, y] = [Block.position[0], Block.position[1]];
+              switch (e.key) {
+                case "a":
+                case "A":
+                case "ArrowLeft":
+                  {
+                    if (x <= 2) {
+                    } else {
+                      if (
+                        control.center[x - 1][y] &&
+                        control.center[x - 3][y] &&
+                        (control.center[x][y] * 4) % 4 != 2 &&
+                        (control.center[x][y] * 4) % 4 != 3
+                      ) {
+                        Block.clear();
+                        Block.position = [x - 3, y];
+                        Block.state = 1;
+                        Block.draws1();
+                        const audio = new Audio("move.wav");
+                        audio.play();
+                      }
+                    }
+                  }
+                  break;
+                case "w":
+                case "W":
+                case "ArrowUp":
+                  {
+                    if (y <= 2) {
+                    } else {
+                      if (
+                        control.center[x][y - 1] &&
+                        control.center[x][y - 3] &&
+                        (control.center[x][y] * 4) % 4 != 1 &&
+                        (control.center[x][y] * 4) % 4 != 3
+                      ) {
+                        Block.clear();
+                        Block.position = [x, y - 3];
+                        Block.state = 3;
+                        Block.draws3();
+                        const audio = new Audio("move.wav");
+                        audio.play();
+                      }
+                    }
+                  }
+                  break;
+                case "s":
+                case "S":
+                case "ArrowDown":
+                  {
+                    if (y >= 16) {
+                    } else {
+                      if (
+                        control.center[x][y + 1] &&
+                        control.center[x][y + 3] &&
+                        (control.center[x][y + 1] * 4) % 4 != 1 &&
+                        (control.center[x][y + 1] * 4) % 4 != 3
+                      ) {
+                        Block.clear();
+                        Block.position = [x, y + 1];
+                        Block.state = 3;
+                        Block.draws3();
+                        const audio = new Audio("move.wav");
+                        audio.play();
+                      }
+                    }
+                  }
+                  break;
+                case "d":
+                case "D":
+                case "ArrowRight":
+                  {
+                    if (x >= 11) {
+                    } else {
+                      if (
+                        control.center[x + 1][y] &&
+                        control.center[x + 3][y] &&
+                        (control.center[x + 1][y] * 4) % 4 != 2 &&
+                        (control.center[x + 1][y] * 4) % 4 != 3
+                      ) {
+                        Block.clear();
+                        Block.position = [x + 1, y];
+                        Block.state = 1;
+                        Block.draws1();
+                        const audio = new Audio("move.wav");
+                        audio.play();
+                      }
+                    }
+                  }
+                  break;
+              }
+            }
+            break;
+          case 3:
+            {
+              let [x, y] = [Block.position[0], Block.position[1]];
+              switch (e.key) {
+                case "a":
+                case "A":
+                case "ArrowLeft":
+                  {
+                    if (x == 0) {
+                    } else {
+                      if (
+                        control.center[x - 1][y] &&
+                        control.center[x - 1][y + 2] &&
+                        (control.center[x][y] * 4) % 4 != 2 &&
+                        (control.center[x][y] * 4) % 4 != 3 &&
+                        (control.center[x][y + 2] * 4) % 4 != 2 &&
+                        (control.center[x][y + 2] * 4) % 4 != 3
+                      ) {
+                        Block.clear();
+                        Block.position = [x - 1, y];
+                        Block.draws3();
+                        const audio = new Audio("move.wav");
+                        audio.play();
+                      }
+                    }
+                  }
+                  break;
+                case "w":
+                case "W":
+                case "ArrowUp":
+                  {
+                    if (y == 0) {
+                    } else {
+                      if (
+                        control.center[x][y - 1] &&
+                        (control.center[x][y] * 4) % 4 != 1 &&
+                        (control.center[x][y] * 4) % 4 != 3
+                      ) {
+                        Block.clear();
+                        Block.position = [x, y - 1];
+                        Block.state = 2;
+                        Block.draws2();
+                        const audio = new Audio("move.wav");
+                        audio.play();
+                      }
+                    }
+                  }
+                  break;
+                case "s":
+                case "S":
+                case "ArrowDown":
+                  {
+                    if (y >= 16) {
+                    } else {
+                      if (
+                        control.center[x][y + 3] &&
+                        (control.center[x][y + 3] * 4) % 4 != 1 &&
+                        (control.center[x][y + 3] * 4) % 4 != 3
+                      ) {
+                        Block.clear();
+                        Block.position = [x, y + 3];
+                        Block.state = 2;
+                        Block.draws2();
+                        const audio = new Audio("move.wav");
+                        audio.play();
+                      }
+                    }
+                  }
+                  break;
+                case "d":
+                case "D":
+                case "ArrowRight":
+                  {
+                    if (x == 13) {
+                    } else {
+                      if (
+                        control.center[x + 1][y] &&
+                        control.center[x + 1][y + 2] &&
+                        (control.center[x + 1][y] * 4) % 4 != 2 &&
+                        (control.center[x + 1][y] * 4) % 4 != 3 &&
+                        (control.center[x + 1][y + 2] * 4) % 4 != 2 &&
+                        (control.center[x + 1][y + 2] * 4) % 4 != 3
+                      ) {
+                        Block.clear();
+                        Block.position = [x + 1, y];
+                        Block.draws3();
+                        const audio = new Audio("move.wav");
+                        audio.play();
+                      }
+                    }
+                  }
+                  break;
+              }
+            }
+            break;
+        }
       }
     }
     if (Block2.num) {
@@ -1577,6 +2175,8 @@ window.onkeydown = function (e) {
                       Block2.position = [x - 1, y];
                       Block2.state = 2;
                       Block2.draw2();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -1600,6 +2200,8 @@ window.onkeydown = function (e) {
                       Block2.clear();
                       Block2.position = [x, y - 1];
                       Block2.draw1();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -1622,6 +2224,8 @@ window.onkeydown = function (e) {
                       Block2.clear();
                       Block2.position = [x, y + 1];
                       Block2.draw1();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -1641,6 +2245,8 @@ window.onkeydown = function (e) {
                       Block2.position = [x + 2, y];
                       Block2.state = 2;
                       Block2.draw2();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -1670,6 +2276,8 @@ window.onkeydown = function (e) {
                       Block2.position = [x - 2, y];
                       Block2.state = 1;
                       Block2.draw1();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -1692,6 +2300,8 @@ window.onkeydown = function (e) {
                       Block2.position = [x, y - 2];
                       Block2.state = 3;
                       Block2.draw3();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -1714,6 +2324,8 @@ window.onkeydown = function (e) {
                       Block2.position = [x, y + 1];
                       Block2.state = 3;
                       Block2.draw3();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -1736,6 +2348,8 @@ window.onkeydown = function (e) {
                       Block2.position = [x + 1, y];
                       Block2.state = 1;
                       Block2.draw1();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -1766,6 +2380,8 @@ window.onkeydown = function (e) {
                       Block2.clear();
                       Block2.position = [x - 1, y];
                       Block2.draw3();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -1785,6 +2401,8 @@ window.onkeydown = function (e) {
                       Block2.position = [x, y - 1];
                       Block2.state = 2;
                       Block2.draw2();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -1804,6 +2422,8 @@ window.onkeydown = function (e) {
                       Block2.position = [x, y + 2];
                       Block2.state = 2;
                       Block2.draw2();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -1826,6 +2446,8 @@ window.onkeydown = function (e) {
                       Block2.clear();
                       Block2.position = [x + 1, y];
                       Block2.draw3();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -1860,6 +2482,8 @@ window.onkeydown = function (e) {
                       Sblock.clear();
                       Sblock.position = [x, y - 1];
                       Sblock.draw1();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -1882,6 +2506,8 @@ window.onkeydown = function (e) {
                       Sblock.clear();
                       Sblock.position = [x, y + 1];
                       Sblock.draw1();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -1901,6 +2527,8 @@ window.onkeydown = function (e) {
                       Sblock.position = [x + 2, y];
                       Sblock.state = 2;
                       Sblock.draw2();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -1930,6 +2558,8 @@ window.onkeydown = function (e) {
                       Sblock.position = [x - 2, y];
                       Sblock.state = 1;
                       Sblock.draw1();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -1952,6 +2582,8 @@ window.onkeydown = function (e) {
                       Sblock.position = [x, y - 2];
                       Sblock.state = 4;
                       Sblock.draw4();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -1974,6 +2606,8 @@ window.onkeydown = function (e) {
                       Sblock.position = [x, y + 1];
                       Sblock.state = 3;
                       Sblock.draw3();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -1996,6 +2630,8 @@ window.onkeydown = function (e) {
                       Sblock.position = [x + 1, y];
                       Sblock.state = 5;
                       Sblock.draw5();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -2026,6 +2662,8 @@ window.onkeydown = function (e) {
                       Sblock.clear();
                       Sblock.position = [x - 1, y];
                       Sblock.draw3();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -2045,6 +2683,8 @@ window.onkeydown = function (e) {
                       Sblock.position = [x, y - 1];
                       Sblock.state = 2;
                       Sblock.draw2();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -2067,6 +2707,8 @@ window.onkeydown = function (e) {
                       Sblock.clear();
                       Sblock.position = [x + 1, y];
                       Sblock.draw3();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -2097,6 +2739,8 @@ window.onkeydown = function (e) {
                       Sblock.clear();
                       Sblock.position = [x - 1, y];
                       Sblock.draw4();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -2119,6 +2763,8 @@ window.onkeydown = function (e) {
                       Sblock.clear();
                       Sblock.position = [x + 1, y];
                       Sblock.draw4();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -2138,6 +2784,8 @@ window.onkeydown = function (e) {
                       Sblock.position = [x, y + 2];
                       Sblock.state = 2;
                       Sblock.draw2();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -2168,6 +2816,8 @@ window.onkeydown = function (e) {
                       Sblock.clear();
                       Sblock.position = [x, y - 1];
                       Sblock.draw5();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -2190,6 +2840,8 @@ window.onkeydown = function (e) {
                       Sblock.clear();
                       Sblock.position = [x, y + 1];
                       Sblock.draw5();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -2209,6 +2861,8 @@ window.onkeydown = function (e) {
                       Sblock.position = [x - 1, y];
                       Sblock.state = 2;
                       Sblock.draw2();
+                      const audio = new Audio("move.wav");
+                      audio.play();
                     }
                   }
                 }
@@ -2273,6 +2927,37 @@ window.onkeydown = function (e) {
         }
       }
     }
+    if (Saw.num) {
+      Saw.clear();
+      Saw.clear2();
+      if (Saw.state == 1) {
+        if (
+          Saw.position[1] >
+          (Block.state == 3 ? Block.position[1] + 1 : Block.position[1])
+        ) {
+          Saw.draw2();
+        } else {
+          if (Saw.position[0] < Block.position[0]) {
+            Saw.draw2();
+          } else {
+            Saw.draw();
+          }
+        }
+      } else {
+        if (Saw.position[0] < Block.position[0]) {
+          Saw.draw2();
+        } else {
+          if (
+            Saw.position[1] >
+            (Block.state == 3 ? Block.position[1] + 1 : Block.position[1])
+          ) {
+            Saw.draw2();
+          } else {
+            Saw.draw();
+          }
+        }
+      }
+    }
   }
 };
 window.onkeyup = function () {
@@ -2302,6 +2987,8 @@ window.onkeyup = function () {
         Bridge.position = [a, b];
         k = 0;
         loop(a, b);
+        const audio = new Audio("rise.wav");
+        audio.play();
       }
       if (
         control.center[x][y] >= 7 &&
@@ -2313,6 +3000,8 @@ window.onkeyup = function () {
         control.process = 3;
         Dialog.type = 5;
         trap();
+        const audio = new Audio("lose.wav");
+        audio.play();
         setTimeout(Dialog.lose, 600);
       }
       if (control.center[x][y] >= 3 && control.center[x][y] < 4) {
@@ -2327,6 +3016,8 @@ window.onkeyup = function () {
         Bridge.position = [a, b];
         k = 0;
         loop(a, b);
+        const audio = new Audio("rise.wav");
+        audio.play();
       }
       if (
         control.center[x + 1][y] >= 3 &&
@@ -2344,6 +3035,8 @@ window.onkeyup = function () {
         Bridge.position = [a, b];
         k = 0;
         loop(a, b);
+        const audio = new Audio("rise.wav");
+        audio.play();
       }
       if (
         control.center[x][y + 1] >= 3 &&
@@ -2361,6 +3054,42 @@ window.onkeyup = function () {
         Bridge.position = [a, b];
         k = 0;
         loop();
+        const audio = new Audio("rise.wav");
+        audio.play();
+      }
+      if (
+        Block.state == 1 &&
+        Block.position[0] == Saw.position[0] - 1 &&
+        Saw.state == 2 &&
+        Block.position[1] == Saw.position[1] &&
+        Saw.num == 1
+      ) {
+        Block.clear();
+        Block.split = 1;
+        Saw.clear();
+        Saw.clear2();
+        Saw.move();
+        Saw.num = 0;
+        setTimeout(() => {
+          Block.draws1();
+        }, 2000);
+      } else if (
+        Block.state == 3 &&
+        Saw.state == 1 &&
+        Block.position[0] == Saw.position[0] &&
+        Block.position[1] == Saw.position[1] - 1 &&
+        Saw.num == 1
+      ) {
+        Block.position[1] -= 1;
+        Block.clear();
+        Block.split = 1;
+        Saw.clear();
+        Saw.clear2();
+        Saw.move();
+        Saw.num = 0;
+        setTimeout(() => {
+          Block.draws3();
+        }, 2000);
       }
     }
     if (Block2.num) {
@@ -2380,9 +3109,13 @@ window.onkeyup = function () {
         Block.clear();
         Block2.clear();
         End.position = [x, y];
+        Accompany.set(39);
         end();
         End.position = [a, b];
+        Accompany.set(39);
         end();
+        const audio = new Audio("win.wav");
+        audio.play();
         if (control.process == 1) {
           setTimeout(Dialog.win, 1000);
           Dialog.type = 3;
@@ -2403,7 +3136,14 @@ window.onkeyup = function () {
         k = 0;
         Lst = [];
         Block.clear();
-        end();
+        Accompany.set(39);
+        if (Block.split) {
+          end3();
+        } else {
+          end();
+        }
+        const audio = new Audio("win.wav");
+        audio.play();
         if (control.process == 1) {
           setTimeout(Dialog.win, 1000);
           Dialog.type = 3;
@@ -2432,6 +3172,8 @@ window.onkeyup = function () {
         Bridge.position = [a, b];
         k = 0;
         loop(a, b);
+        const audio = new Audio("rise.wav");
+        audio.play();
       }
       if (
         control.center[c][d] >= 7 &&
@@ -2443,6 +3185,8 @@ window.onkeyup = function () {
         control.process = 3;
         Dialog.type = 5;
         trap();
+        const audio = new Audio("lose.wav");
+        audio.play();
         setTimeout(Dialog.lose, 600);
       }
       if (
@@ -2461,6 +3205,8 @@ window.onkeyup = function () {
         Bridge.position = [a, b];
         k = 0;
         loop(a, b);
+        const audio = new Audio("rise.wav");
+        audio.play();
       }
       if (
         control.center[c][d + 1] >= 3 &&
@@ -2478,6 +3224,8 @@ window.onkeyup = function () {
         Bridge.position = [a, b];
         k = 0;
         loop(a, b);
+        const audio = new Audio("rise.wav");
+        audio.play();
       }
       if (
         control.center[c][d] >= 3 &&
@@ -2495,6 +3243,8 @@ window.onkeyup = function () {
         Bridge.position = [a, b];
         k = 0;
         loop(a, b);
+        const audio = new Audio("rise.wav");
+        audio.play();
       }
       if (
         control.center[c + 1][d] >= 3 &&
@@ -2512,6 +3262,8 @@ window.onkeyup = function () {
         Bridge.position = [a, b];
         k = 0;
         loop(a, b);
+        const audio = new Audio("rise.wav");
+        audio.play();
       }
       if (
         control.center[c][d] >= 3 &&
@@ -2529,6 +3281,8 @@ window.onkeyup = function () {
         Bridge.position = [a, b];
         k = 0;
         loop();
+        const audio = new Audio("rise.wav");
+        audio.play();
       }
       if (
         control.center[c][d] >= 5 &&
@@ -2541,7 +3295,10 @@ window.onkeyup = function () {
         Lst = [];
         Sblock.clear();
         End.position = [c, d];
+        Accompany.set(39);
         end2(c, d);
+        const audio = new Audio("win.wav");
+        audio.play();
         if (control.process == 1) {
           setTimeout(Dialog.win, 1000);
           Dialog.type = 3;
@@ -2557,6 +3314,8 @@ window.onkeyup = function () {
       Cegg.num++;
       control.process = 6;
       Cegg.pop();
+      const audio = new Audio("color.wav");
+      audio.play();
     }
     if (
       control.center[x + 1][y] >= 9 &&
@@ -2567,6 +3326,8 @@ window.onkeyup = function () {
       Cegg.num++;
       control.process = 6;
       Cegg.pop();
+      const audio = new Audio("color.wav");
+      audio.play();
     }
     if (
       control.center[x][y + 1] >= 9 &&
@@ -2577,6 +3338,8 @@ window.onkeyup = function () {
       Cegg.num++;
       control.process = 6;
       Cegg.pop();
+      const audio = new Audio("color.wav");
+      audio.play();
     }
   }
 };
@@ -2597,7 +3360,9 @@ function drawground(lst) {
           control.center[lst[0]][lst[1]] == 1 ||
           control.center[lst[0]][lst[1]] == 1.25 ||
           control.center[lst[0]][lst[1]] == 1.5 ||
-          control.center[lst[0]][lst[1]] == 1.75
+          control.center[lst[0]][lst[1]] == 1.75 ||
+          (control.center[lst[0]][lst[1]] >= 12 &&
+            control.center[lst[0]][lst[1]] < 13)
         ) {
           Ground.draw();
         }
@@ -2605,7 +3370,9 @@ function drawground(lst) {
           control.center[lst[0]][lst[1]] == 7 ||
           control.center[lst[0]][lst[1]] == 7.25 ||
           control.center[lst[0]][lst[1]] == 7.5 ||
-          control.center[lst[0]][lst[1]] == 7.75
+          control.center[lst[0]][lst[1]] == 7.75 ||
+          (control.center[lst[0]][lst[1]] >= 12 &&
+            control.center[lst[0]][lst[1]] < 13)
         ) {
           Ground.draw2();
         }
@@ -2615,7 +3382,9 @@ function drawground(lst) {
           control.center[lst[0]][lst[1]] == 1 ||
           control.center[lst[0]][lst[1]] == 1.25 ||
           control.center[lst[0]][lst[1]] == 1.5 ||
-          control.center[lst[0]][lst[1]] == 1.75
+          control.center[lst[0]][lst[1]] == 1.75 ||
+          (control.center[lst[0]][lst[1]] >= 12 &&
+            control.center[lst[0]][lst[1]] < 13)
         ) {
           Ground.draw();
         }
@@ -2623,7 +3392,9 @@ function drawground(lst) {
           control.center[lst[0]][lst[1]] == 7 ||
           control.center[lst[0]][lst[1]] == 7.25 ||
           control.center[lst[0]][lst[1]] == 7.5 ||
-          control.center[lst[0]][lst[1]] == 7.75
+          control.center[lst[0]][lst[1]] == 7.75 ||
+          (control.center[lst[0]][lst[1]] >= 12 &&
+            control.center[lst[0]][lst[1]] < 13)
         ) {
           Ground.draw2();
         }
@@ -2638,7 +3409,9 @@ function drawground(lst) {
         control.center[lst[0]][lst[1]] == 1 ||
         control.center[lst[0]][lst[1]] == 1.25 ||
         control.center[lst[0]][lst[1]] == 1.5 ||
-        control.center[lst[0]][lst[1]] == 1.75
+        control.center[lst[0]][lst[1]] == 1.75 ||
+        (control.center[lst[0]][lst[1]] >= 12 &&
+          control.center[lst[0]][lst[1]] < 13)
       ) {
         Ground.draw();
       }
@@ -2646,7 +3419,9 @@ function drawground(lst) {
         control.center[lst[0]][lst[1]] == 7 ||
         control.center[lst[0]][lst[1]] == 7.25 ||
         control.center[lst[0]][lst[1]] == 7.5 ||
-        control.center[lst[0]][lst[1]] == 7.75
+        control.center[lst[0]][lst[1]] == 7.75 ||
+        (control.center[lst[0]][lst[1]] >= 12 &&
+          control.center[lst[0]][lst[1]] < 13)
       ) {
         Ground.draw2();
       }
@@ -2661,7 +3436,9 @@ function drawground(lst) {
         control.center[lst[0]][lst[1]] == 1 ||
         control.center[lst[0]][lst[1]] == 1.25 ||
         control.center[lst[0]][lst[1]] == 1.5 ||
-        control.center[lst[0]][lst[1]] == 1.75
+        control.center[lst[0]][lst[1]] == 1.75 ||
+        (control.center[lst[0]][lst[1]] >= 12 &&
+          control.center[lst[0]][lst[1]] < 13)
       ) {
         Ground.draw();
       }
@@ -2669,7 +3446,9 @@ function drawground(lst) {
         control.center[lst[0]][lst[1]] == 7 ||
         control.center[lst[0]][lst[1]] == 7.25 ||
         control.center[lst[0]][lst[1]] == 7.5 ||
-        control.center[lst[0]][lst[1]] == 7.75
+        control.center[lst[0]][lst[1]] == 7.75 ||
+        (control.center[lst[0]][lst[1]] >= 12 &&
+          control.center[lst[0]][lst[1]] < 13)
       ) {
         Ground.draw2();
       }
@@ -2679,7 +3458,9 @@ function drawground(lst) {
         control.center[lst[0]][lst[1]] == 1 ||
         control.center[lst[0]][lst[1]] == 1.25 ||
         control.center[lst[0]][lst[1]] == 1.5 ||
-        control.center[lst[0]][lst[1]] == 1.75
+        control.center[lst[0]][lst[1]] == 1.75 ||
+        (control.center[lst[0]][lst[1]] >= 12 &&
+          control.center[lst[0]][lst[1]] < 13)
       ) {
         Ground.draw();
       }
@@ -2687,7 +3468,9 @@ function drawground(lst) {
         control.center[lst[0]][lst[1]] == 7 ||
         control.center[lst[0]][lst[1]] == 7.25 ||
         control.center[lst[0]][lst[1]] == 7.5 ||
-        control.center[lst[0]][lst[1]] == 7.75
+        control.center[lst[0]][lst[1]] == 7.75 ||
+        (control.center[lst[0]][lst[1]] >= 12 &&
+          control.center[lst[0]][lst[1]] < 13)
       ) {
         Ground.draw2();
       }
@@ -2703,7 +3486,9 @@ function drawground(lst) {
         control.center[lst[0]][lst[1]] == 1 ||
         control.center[lst[0]][lst[1]] == 1.25 ||
         control.center[lst[0]][lst[1]] == 1.5 ||
-        control.center[lst[0]][lst[1]] == 1.75
+        control.center[lst[0]][lst[1]] == 1.75 ||
+        (control.center[lst[0]][lst[1]] >= 12 &&
+          control.center[lst[0]][lst[1]] < 13)
       ) {
         Ground.draw();
       }
@@ -2711,7 +3496,9 @@ function drawground(lst) {
         control.center[lst[0]][lst[1]] == 7 ||
         control.center[lst[0]][lst[1]] == 7.25 ||
         control.center[lst[0]][lst[1]] == 7.5 ||
-        control.center[lst[0]][lst[1]] == 7.75
+        control.center[lst[0]][lst[1]] == 7.75 ||
+        (control.center[lst[0]][lst[1]] >= 12 &&
+          control.center[lst[0]][lst[1]] < 13)
       ) {
         Ground.draw2();
       }
@@ -2721,7 +3508,9 @@ function drawground(lst) {
         control.center[lst[0]][lst[1]] == 1 ||
         control.center[lst[0]][lst[1]] == 1.25 ||
         control.center[lst[0]][lst[1]] == 1.5 ||
-        control.center[lst[0]][lst[1]] == 1.75
+        control.center[lst[0]][lst[1]] == 1.75 ||
+        (control.center[lst[0]][lst[1]] >= 12 &&
+          control.center[lst[0]][lst[1]] < 13)
       ) {
         Ground.draw();
       }
@@ -2729,7 +3518,9 @@ function drawground(lst) {
         control.center[lst[0]][lst[1]] == 7 ||
         control.center[lst[0]][lst[1]] == 7.25 ||
         control.center[lst[0]][lst[1]] == 7.5 ||
-        control.center[lst[0]][lst[1]] == 7.75
+        control.center[lst[0]][lst[1]] == 7.75 ||
+        (control.center[lst[0]][lst[1]] >= 12 &&
+          control.center[lst[0]][lst[1]] < 13)
       ) {
         Ground.draw2();
       }
@@ -2759,7 +3550,9 @@ export function drawbridge(lst) {
           (control.center[lst[0]][lst[1] - 1] >= 4 &&
             control.center[lst[0]][lst[1] - 1] < 5) ||
           (control.center[lst[0]][lst[1] - 1] >= 7 &&
-            control.center[lst[0]][lst[1] - 1] < 8)) &&
+            control.center[lst[0]][lst[1] - 1] < 8) ||
+          (control.center[lst[0]][lst[1] - 1] >= 12 &&
+            control.center[lst[0]][lst[1] - 1] < 13)) &&
           ((control.center[lst[0] + 1][lst[1]] >= 1 &&
             control.center[lst[0] + 1][lst[1]] < 2) ||
             (control.center[lst[0] + 1][lst[1]] >= 3 &&
@@ -2767,7 +3560,9 @@ export function drawbridge(lst) {
             (control.center[lst[0] + 1][lst[1]] >= 4 &&
               control.center[lst[0] + 1][lst[1]] < 5) ||
             (control.center[lst[0] + 1][lst[1]] >= 7 &&
-              control.center[lst[0] + 1][lst[1]] < 8))) ||
+              control.center[lst[0] + 1][lst[1]] < 8) ||
+            (control.center[lst[0] + 1][lst[1]] >= 12 &&
+              control.center[lst[0] + 1][lst[1]] < 13))) ||
         (((control.center[lst[0]][lst[1] - 1] >= 1 &&
           control.center[lst[0]][lst[1] - 1] < 2) ||
           (control.center[lst[0]][lst[1] - 1] >= 3 &&
@@ -2775,7 +3570,9 @@ export function drawbridge(lst) {
           (control.center[lst[0]][lst[1] - 1] >= 4 &&
             control.center[lst[0]][lst[1] - 1] < 5) ||
           (control.center[lst[0]][lst[1] - 1] >= 7 &&
-            control.center[lst[0]][lst[1] - 1] < 8)) &&
+            control.center[lst[0]][lst[1] - 1] < 8) ||
+          (control.center[lst[0]][lst[1] - 1] >= 12 &&
+            control.center[lst[0]][lst[1] - 1] < 13)) &&
           ((control.center[lst[0]][lst[1] + 1] >= 1 &&
             control.center[lst[0]][lst[1] + 1] < 2) ||
             (control.center[lst[0]][lst[1] + 1] >= 3 &&
@@ -2783,7 +3580,9 @@ export function drawbridge(lst) {
             (control.center[lst[0]][lst[1] + 1] >= 4 &&
               control.center[lst[0]][lst[1] + 1] < 5) ||
             (control.center[lst[0]][lst[1] + 1] >= 7 &&
-              control.center[lst[0]][lst[1] + 1] < 8))) ||
+              control.center[lst[0]][lst[1] + 1] < 8) ||
+            (control.center[lst[0]][lst[1] + 1] >= 12 &&
+              control.center[lst[0]][lst[1] + 1] < 13))) ||
         (((control.center[lst[0] + 1][lst[1]] >= 1 &&
           control.center[lst[0] + 1][lst[1]] < 2) ||
           (control.center[lst[0] + 1][lst[1]] >= 3 &&
@@ -2791,7 +3590,9 @@ export function drawbridge(lst) {
           (control.center[lst[0] + 1][lst[1]] >= 4 &&
             control.center[lst[0] + 1][lst[1]] < 5) ||
           (control.center[lst[0] + 1][lst[1]] >= 7 &&
-            control.center[lst[0] + 1][lst[1]] < 8)) &&
+            control.center[lst[0] + 1][lst[1]] < 8) ||
+          (control.center[lst[0] + 1][lst[1]] >= 12 &&
+            control.center[lst[0] + 1][lst[1]] < 13)) &&
           ((control.center[lst[0]][lst[1] + 1] >= 1 &&
             control.center[lst[0]][lst[1] + 1] < 2) ||
             (control.center[lst[0]][lst[1] + 1] >= 3 &&
@@ -2799,7 +3600,9 @@ export function drawbridge(lst) {
             (control.center[lst[0]][lst[1] + 1] >= 4 &&
               control.center[lst[0]][lst[1] + 1] < 5) ||
             (control.center[lst[0]][lst[1] + 1] >= 7 &&
-              control.center[lst[0]][lst[1] + 1] < 8)))
+              control.center[lst[0]][lst[1] + 1] < 8) ||
+            (control.center[lst[0]][lst[1] + 1] >= 12 &&
+              control.center[lst[0]][lst[1] + 1] < 13)))
       ) {
         return 1;
       }
@@ -2814,7 +3617,9 @@ export function drawbridge(lst) {
         (control.center[lst[0] - 1][lst[1]] >= 4 &&
           control.center[lst[0] - 1][lst[1]] < 5) ||
         (control.center[lst[0] - 1][lst[1]] >= 7 &&
-          control.center[lst[0] - 1][lst[1]] < 8)) &&
+          control.center[lst[0] - 1][lst[1]] < 8) ||
+        (control.center[lst[0] - 1][lst[1]] >= 12 &&
+          control.center[lst[0] - 1][lst[1]] < 13)) &&
         ((control.center[lst[0] + 1][lst[1]] >= 1 &&
           control.center[lst[0] + 1][lst[1]] < 2) ||
           (control.center[lst[0] + 1][lst[1]] >= 3 &&
@@ -2822,7 +3627,9 @@ export function drawbridge(lst) {
           (control.center[lst[0] + 1][lst[1]] >= 4 &&
             control.center[lst[0] + 1][lst[1]] < 5) ||
           (control.center[lst[0] + 1][lst[1]] >= 7 &&
-            control.center[lst[0] + 1][lst[1]] < 8))) ||
+            control.center[lst[0] + 1][lst[1]] < 8) ||
+          (control.center[lst[0] + 1][lst[1]] >= 12 &&
+            control.center[lst[0] + 1][lst[1]] < 13))) ||
       (((control.center[lst[0] - 1][lst[1]] >= 1 &&
         control.center[lst[0] - 1][lst[1]] < 2) ||
         (control.center[lst[0] - 1][lst[1]] >= 3 &&
@@ -2830,7 +3637,9 @@ export function drawbridge(lst) {
         (control.center[lst[0] - 1][lst[1]] >= 4 &&
           control.center[lst[0] - 1][lst[1]] < 5) ||
         (control.center[lst[0] - 1][lst[1]] >= 7 &&
-          control.center[lst[0] - 1][lst[1]] < 8)) &&
+          control.center[lst[0] - 1][lst[1]] < 8) ||
+        (control.center[lst[0] - 1][lst[1]] >= 12 &&
+          control.center[lst[0] - 1][lst[1]] < 13)) &&
         ((control.center[lst[0]][lst[1] + 1] >= 1 &&
           control.center[lst[0]][lst[1] + 1] < 2) ||
           (control.center[lst[0]][lst[1] + 1] >= 3 &&
@@ -2838,7 +3647,9 @@ export function drawbridge(lst) {
           (control.center[lst[0]][lst[1] + 1] >= 4 &&
             control.center[lst[0]][lst[1] + 1] < 5) ||
           (control.center[lst[0]][lst[1] + 1] >= 7 &&
-            control.center[lst[0]][lst[1] + 1] < 8))) ||
+            control.center[lst[0]][lst[1] + 1] < 8) ||
+          (control.center[lst[0]][lst[1] + 1] >= 12 &&
+            control.center[lst[0]][lst[1] + 1] < 13))) ||
       (((control.center[lst[0] + 1][lst[1]] >= 1 &&
         control.center[lst[0] + 1][lst[1]] < 2) ||
         (control.center[lst[0] + 1][lst[1]] >= 3 &&
@@ -2846,7 +3657,9 @@ export function drawbridge(lst) {
         (control.center[lst[0] + 1][lst[1]] >= 4 &&
           control.center[lst[0] + 1][lst[1]] < 5) ||
         (control.center[lst[0] + 1][lst[1]] >= 7 &&
-          control.center[lst[0] + 1][lst[1]] < 8)) &&
+          control.center[lst[0] + 1][lst[1]] < 8) ||
+        (control.center[lst[0] + 1][lst[1]] >= 12 &&
+          control.center[lst[0] + 1][lst[1]] < 13)) &&
         ((control.center[lst[0]][lst[1] + 1] >= 1 &&
           control.center[lst[0]][lst[1] + 1] < 2) ||
           (control.center[lst[0]][lst[1] + 1] >= 3 &&
@@ -2854,7 +3667,9 @@ export function drawbridge(lst) {
           (control.center[lst[0]][lst[1] + 1] >= 4 &&
             control.center[lst[0]][lst[1] + 1] < 5) ||
           (control.center[lst[0]][lst[1] + 1] >= 7 &&
-            control.center[lst[0]][lst[1] + 1] < 8)))
+            control.center[lst[0]][lst[1] + 1] < 8) ||
+          (control.center[lst[0]][lst[1] + 1] >= 12 &&
+            control.center[lst[0]][lst[1] + 1] < 13)))
     ) {
       return 1;
     }
@@ -2868,7 +3683,9 @@ export function drawbridge(lst) {
         (control.center[lst[0] - 1][lst[1]] >= 4 &&
           control.center[lst[0] - 1][lst[1]] < 5) ||
         (control.center[lst[0] - 1][lst[1]] >= 7 &&
-          control.center[lst[0] - 1][lst[1]] < 8)) &&
+          control.center[lst[0] - 1][lst[1]] < 8) ||
+        (control.center[lst[0] - 1][lst[1]] >= 12 &&
+          control.center[lst[0] - 1][lst[1]] < 13)) &&
         ((control.center[lst[0] + 1][lst[1]] >= 1 &&
           control.center[lst[0] + 1][lst[1]] < 2) ||
           (control.center[lst[0] + 1][lst[1]] >= 3 &&
@@ -2876,7 +3693,9 @@ export function drawbridge(lst) {
           (control.center[lst[0] + 1][lst[1]] >= 4 &&
             control.center[lst[0] + 1][lst[1]] < 5) ||
           (control.center[lst[0] + 1][lst[1]] >= 7 &&
-            control.center[lst[0] + 1][lst[1]] < 8))) ||
+            control.center[lst[0] + 1][lst[1]] < 8) ||
+          (control.center[lst[0] + 1][lst[1]] >= 12 &&
+            control.center[lst[0] + 1][lst[1]] < 13))) ||
       (((control.center[lst[0] - 1][lst[1]] >= 1 &&
         control.center[lst[0] - 1][lst[1]] < 2) ||
         (control.center[lst[0] - 1][lst[1]] >= 3 &&
@@ -2884,7 +3703,9 @@ export function drawbridge(lst) {
         (control.center[lst[0] - 1][lst[1]] >= 4 &&
           control.center[lst[0] - 1][lst[1]] < 5) ||
         (control.center[lst[0] - 1][lst[1]] >= 7 &&
-          control.center[lst[0] - 1][lst[1]] < 8)) &&
+          control.center[lst[0] - 1][lst[1]] < 8) ||
+        (control.center[lst[0] - 1][lst[1]] >= 12 &&
+          control.center[lst[0] - 1][lst[1]] < 13)) &&
         ((control.center[lst[0]][lst[1] + 1] >= 1 &&
           control.center[lst[0]][lst[1] + 1] < 2) ||
           (control.center[lst[0]][lst[1] + 1] >= 3 &&
@@ -2892,7 +3713,9 @@ export function drawbridge(lst) {
           (control.center[lst[0]][lst[1] + 1] >= 4 &&
             control.center[lst[0]][lst[1] + 1] < 5) ||
           (control.center[lst[0]][lst[1] + 1] >= 7 &&
-            control.center[lst[0]][lst[1] + 1] < 8))) ||
+            control.center[lst[0]][lst[1] + 1] < 8) ||
+          (control.center[lst[0]][lst[1] + 1] >= 12 &&
+            control.center[lst[0]][lst[1] + 1] < 13))) ||
       (((control.center[lst[0] + 1][lst[1]] >= 1 &&
         control.center[lst[0] + 1][lst[1]] < 2) ||
         (control.center[lst[0] + 1][lst[1]] >= 3 &&
@@ -2900,7 +3723,9 @@ export function drawbridge(lst) {
         (control.center[lst[0] + 1][lst[1]] >= 4 &&
           control.center[lst[0] + 1][lst[1]] < 5) ||
         (control.center[lst[0] + 1][lst[1]] >= 7 &&
-          control.center[lst[0] + 1][lst[1]] < 8)) &&
+          control.center[lst[0] + 1][lst[1]] < 8) ||
+        (control.center[lst[0] + 1][lst[1]] >= 12 &&
+          control.center[lst[0] + 1][lst[1]] < 13)) &&
         ((control.center[lst[0]][lst[1] + 1] >= 1 &&
           control.center[lst[0]][lst[1] + 1] < 2) ||
           (control.center[lst[0]][lst[1] + 1] >= 3 &&
@@ -2908,7 +3733,9 @@ export function drawbridge(lst) {
           (control.center[lst[0]][lst[1] + 1] >= 4 &&
             control.center[lst[0]][lst[1] + 1] < 5) ||
           (control.center[lst[0]][lst[1] + 1] >= 7 &&
-            control.center[lst[0]][lst[1] + 1] < 8))) ||
+            control.center[lst[0]][lst[1] + 1] < 8) ||
+          (control.center[lst[0]][lst[1] + 1] >= 12 &&
+            control.center[lst[0]][lst[1] + 1] < 13))) ||
       (((control.center[lst[0] + 1][lst[1]] >= 1 &&
         control.center[lst[0] + 1][lst[1]] < 2) ||
         (control.center[lst[0] + 1][lst[1]] >= 3 &&
@@ -2916,7 +3743,9 @@ export function drawbridge(lst) {
         (control.center[lst[0] + 1][lst[1]] >= 4 &&
           control.center[lst[0] + 1][lst[1]] < 5) ||
         (control.center[lst[0] + 1][lst[1]] >= 7 &&
-          control.center[lst[0] + 1][lst[1]] < 8)) &&
+          control.center[lst[0] + 1][lst[1]] < 8) ||
+        (control.center[lst[0] + 1][lst[1]] >= 12 &&
+          control.center[lst[0] + 1][lst[1]] < 13)) &&
         ((control.center[lst[0]][lst[1] - 1] >= 1 &&
           control.center[lst[0]][lst[1] - 1] < 2) ||
           (control.center[lst[0]][lst[1] - 1] >= 3 &&
@@ -2924,7 +3753,9 @@ export function drawbridge(lst) {
           (control.center[lst[0]][lst[1] - 1] >= 4 &&
             control.center[lst[0]][lst[1] - 1] < 5) ||
           (control.center[lst[0]][lst[1] - 1] >= 7 &&
-            control.center[lst[0]][lst[1] - 1] < 8))) ||
+            control.center[lst[0]][lst[1] - 1] < 8) ||
+          (control.center[lst[0]][lst[1] - 1] >= 12 &&
+            control.center[lst[0]][lst[1] - 1] < 13))) ||
       (((control.center[lst[0] - 1][lst[1]] >= 1 &&
         control.center[lst[0] - 1][lst[1]] < 2) ||
         (control.center[lst[0] - 1][lst[1]] >= 3 &&
@@ -2932,7 +3763,9 @@ export function drawbridge(lst) {
         (control.center[lst[0] - 1][lst[1]] >= 4 &&
           control.center[lst[0] - 1][lst[1]] < 5) ||
         (control.center[lst[0] - 1][lst[1]] >= 7 &&
-          control.center[lst[0] - 1][lst[1]] < 8)) &&
+          control.center[lst[0] - 1][lst[1]] < 8) ||
+        (control.center[lst[0] - 1][lst[1]] >= 12 &&
+          control.center[lst[0] - 1][lst[1]] < 13)) &&
         ((control.center[lst[0]][lst[1] - 1] >= 1 &&
           control.center[lst[0]][lst[1] - 1] < 2) ||
           (control.center[lst[0]][lst[1] - 1] >= 3 &&
@@ -2940,7 +3773,9 @@ export function drawbridge(lst) {
           (control.center[lst[0]][lst[1] - 1] >= 4 &&
             control.center[lst[0]][lst[1] - 1] < 5) ||
           (control.center[lst[0]][lst[1] - 1] >= 7 &&
-            control.center[lst[0]][lst[1] - 1] < 8))) ||
+            control.center[lst[0]][lst[1] - 1] < 8) ||
+          (control.center[lst[0]][lst[1] - 1] >= 12 &&
+            control.center[lst[0]][lst[1] - 1] < 13))) ||
       (((control.center[lst[0]][lst[1] + 1] >= 1 &&
         control.center[lst[0]][lst[1] + 1] < 2) ||
         (control.center[lst[0]][lst[1] + 1] >= 3 &&
@@ -2948,7 +3783,9 @@ export function drawbridge(lst) {
         (control.center[lst[0]][lst[1] + 1] >= 4 &&
           control.center[lst[0]][lst[1] + 1] < 5) ||
         (control.center[lst[0]][lst[1] + 1] >= 7 &&
-          control.center[lst[0]][lst[1] + 1] < 8)) &&
+          control.center[lst[0]][lst[1] + 1] < 8) ||
+        (control.center[lst[0]][lst[1] + 1] >= 12 &&
+          control.center[lst[0]][lst[1] + 1] < 13)) &&
         ((control.center[lst[0]][lst[1] - 1] >= 1 &&
           control.center[lst[0]][lst[1] - 1] < 2) ||
           (control.center[lst[0]][lst[1] - 1] >= 3 &&
@@ -2956,7 +3793,9 @@ export function drawbridge(lst) {
           (control.center[lst[0]][lst[1] - 1] >= 4 &&
             control.center[lst[0]][lst[1] - 1] < 5) ||
           (control.center[lst[0]][lst[1] - 1] >= 7 &&
-            control.center[lst[0]][lst[1] - 1] < 8)))
+            control.center[lst[0]][lst[1] - 1] < 8) ||
+          (control.center[lst[0]][lst[1] - 1] >= 12 &&
+            control.center[lst[0]][lst[1] - 1] < 13)))
     ) {
       return 1;
     }
@@ -3052,6 +3891,85 @@ async function end2() {
   h += v;
   if (h < 80) {
     requestAnimationFrame(end2);
+  } else {
+    h = 0;
+    v = 0;
+  }
+}
+async function end3() {
+  let lst = control.convert(End.position[0], End.position[1]);
+  const img = new Image();
+  img.src = Block.texture;
+  await new Promise((resolve) => {
+    img.onload = resolve;
+  });
+  ctx.clearRect(0, 0, 1600, 900);
+  if (h < 80) {
+    ctx.save();
+    ctx.transform(1, 1.36, 0, 1, lst[0], lst[1] + h);
+    ctx.filter = "brightness(0.5)";
+    ctx.drawImage(img, 0, -80, 24, 80 - h);
+    ctx.restore();
+    ctx.save();
+    ctx.transform(1.2, 0, 0.785, 1, lst[0], lst[1] + h - 80);
+    ctx.filter = "brightness(1.5)";
+    ctx.drawImage(img, 0, 0, 66, 31.8);
+    ctx.restore();
+    ctx.save();
+    ctx.translate(lst[0] + 24, lst[1] + h - 48);
+    ctx.drawImage(img, 0, 0, 80, 80 - h);
+    ctx.restore();
+    ctx.save();
+    ctx.transform(1, 1.36, 0, 1, lst[0], lst[1] + h - 160);
+    ctx.filter = "brightness(0.5)";
+    ctx.drawImage(img, 0, -80, 24, 80);
+    ctx.restore();
+    ctx.save();
+    ctx.transform(1.2, 0, 0.785, 1, lst[0], lst[1] + h - 240);
+    ctx.filter = "brightness(1.5)";
+    ctx.drawImage(img, 0, 0, 66, 31.8);
+    ctx.restore();
+    ctx.save();
+    ctx.translate(lst[0] + 24, lst[1] + h - 208);
+    ctx.drawImage(img, 0, 0, 80, 80);
+    ctx.restore();
+  }
+  if (h >= 80 && h <= 160) {
+    ctx.save();
+    ctx.transform(1, 1.36, 0, 1, lst[0], lst[1] + h - 160);
+    ctx.filter = "brightness(0.5)";
+    ctx.drawImage(img, 0, -80, 24, 80);
+    ctx.restore();
+    ctx.save();
+    ctx.transform(1.2, 0, 0.785, 1, lst[0], lst[1] + h - 240);
+    ctx.filter = "brightness(1.5)";
+    ctx.drawImage(img, 0, 0, 66, 31.8);
+    ctx.restore();
+    ctx.save();
+    ctx.translate(lst[0] + 24, lst[1] + h - 208);
+    ctx.drawImage(img, 0, 0, 80, 80);
+    ctx.restore();
+  }
+  if (h > 160) {
+    ctx.save();
+    ctx.transform(1, 1.36, 0, 1, lst[0], lst[1] + h - 160);
+    ctx.filter = "brightness(0.5)";
+    ctx.drawImage(img, 0, -80, 24, 80 - h + 160);
+    ctx.restore();
+    ctx.save();
+    ctx.transform(1.2, 0, 0.785, 1, lst[0], lst[1] + h - 240);
+    ctx.filter = "brightness(1.5)";
+    ctx.drawImage(img, 0, 0, 66, 31.8);
+    ctx.restore();
+    ctx.save();
+    ctx.translate(lst[0] + 24, lst[1] + h - 208);
+    ctx.drawImage(img, 0, 0, 80, 80 - h + 160);
+    ctx.restore();
+  }
+  v += 0.05;
+  h += v;
+  if (h < 240) {
+    requestAnimationFrame(end3);
   } else {
     h = 0;
     v = 0;

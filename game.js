@@ -21,6 +21,7 @@ import Cegg from "./coloregg.js";
 import Block2 from "./Block2.js";
 import Sblock from "./strangeblock.js";
 import Saw from "./saw.js";
+import Count from "./count.js";
 window.onclick = function (e) {
   if (control.process == 0) {
     let lst = control.locate(e.x - 48, e.y);
@@ -771,6 +772,9 @@ window.onclick = function (e) {
             }
           }
           Bridge.clear();
+          Count.clear();
+          Count.number = 0;
+          Count.draw();
         } else {
           window.alert("一张地图终点数必须多于石块数");
         }
@@ -926,6 +930,7 @@ window.onclick = function (e) {
       case 1:
         {
           if (e.x > 550 && e.x < 1146 && e.y > 342 && e.y < 438) {
+            Count.clear();
             clear();
             Cegg.clear();
             control.choice = 0;
@@ -966,6 +971,7 @@ window.onclick = function (e) {
             Teach.num++;
             Teach.draw();
           } else if (e.x > 550 && e.x < 1046 && e.y > 472 && e.y < 568) {
+            Count.clear();
             Cegg.clear();
             clear();
             control.process = 4;
@@ -997,6 +1003,7 @@ window.onclick = function (e) {
             }
             Play.play();
           } else if (e.x > 550 && e.x < 1046 && e.y > 602 && e.y < 698) {
+            Count.clear();
             Cegg.clear();
             clear();
             control.choice = 0;
@@ -1043,6 +1050,7 @@ window.onclick = function (e) {
             Dialog.clear();
           } else if (e.x > 550 && e.x < 1046 && e.y > 602 && e.y < 698) {
             if (Dialog.mem == 0 || Dialog.mem == 1) {
+              Count.clear();
               Cegg.clear();
               clear();
               control.choice = 0;
@@ -1123,6 +1131,7 @@ window.onclick = function (e) {
             Dialog.main();
           } else if (e.x > 550 && e.x < 1146 && e.y > 522 && e.y < 668) {
             if (Dialog.mem == 0 || Dialog.mem == 1) {
+              Count.clear();
               Cegg.clear();
               control.choice = 0;
               control.process = Dialog.mem;
@@ -1173,6 +1182,7 @@ window.onclick = function (e) {
             Dialog.clear();
             Dialog.main();
           } else if (e.x > 550 && e.x < 1146 && e.y > 522 && e.y < 668) {
+            Count.clear();
             Cegg.clear();
             Accompany.clear();
             Block.clear();
@@ -1221,6 +1231,7 @@ window.onclick = function (e) {
             Dialog.clear();
             Dialog.main();
           } else if (e.x > 550 && e.x < 1146 && e.y > 522 && e.y < 668) {
+            Count.clear();
             Cegg.clear();
             clear();
             Accompany.clear();
@@ -1494,6 +1505,9 @@ window.onkeydown = function (e) {
                           Block.draw2();
                           const audio = new Audio("move.wav");
                           audio.play();
+                          Count.clear();
+                          Count.number++;
+                          Count.draw();
                         }
                       }
                     }
@@ -1527,6 +1541,9 @@ window.onkeydown = function (e) {
                           Block.draw1();
                           const audio = new Audio("move.wav");
                           audio.play();
+                          Count.clear();
+                          Count.number++;
+                          Count.draw();
                         }
                       }
                     }
@@ -1560,6 +1577,9 @@ window.onkeydown = function (e) {
                           Block.draw1();
                           const audio = new Audio("move.wav");
                           audio.play();
+                          Count.clear();
+                          Count.number++;
+                          Count.draw();
                         }
                       }
                     }
@@ -1589,6 +1609,9 @@ window.onkeydown = function (e) {
                           Block.draw2();
                           const audio = new Audio("move.wav");
                           audio.play();
+                          Count.clear();
+                          Count.number++;
+                          Count.draw();
                         }
                       }
                     }
@@ -1628,6 +1651,9 @@ window.onkeydown = function (e) {
                           Block.draw1();
                           const audio = new Audio("move.wav");
                           audio.play();
+                          Count.clear();
+                          Count.number++;
+                          Count.draw();
                         }
                       }
                     }
@@ -1660,6 +1686,9 @@ window.onkeydown = function (e) {
                           Block.draw3();
                           const audio = new Audio("move.wav");
                           audio.play();
+                          Count.clear();
+                          Count.number++;
+                          Count.draw();
                         }
                       }
                     }
@@ -1692,6 +1721,9 @@ window.onkeydown = function (e) {
                           Block.draw3();
                           const audio = new Audio("move.wav");
                           audio.play();
+                          Count.clear();
+                          Count.number++;
+                          Count.draw();
                         }
                       }
                     }
@@ -1724,6 +1756,9 @@ window.onkeydown = function (e) {
                           Block.draw1();
                           const audio = new Audio("move.wav");
                           audio.play();
+                          Count.clear();
+                          Count.number++;
+                          Count.draw();
                         }
                       }
                     }
@@ -1764,6 +1799,9 @@ window.onkeydown = function (e) {
                           Block.draw3();
                           const audio = new Audio("move.wav");
                           audio.play();
+                          Count.clear();
+                          Count.number++;
+                          Count.draw();
                         }
                       }
                     }
@@ -1793,6 +1831,9 @@ window.onkeydown = function (e) {
                           Block.draw2();
                           const audio = new Audio("move.wav");
                           audio.play();
+                          Count.clear();
+                          Count.number++;
+                          Count.draw();
                         }
                       }
                     }
@@ -1822,6 +1863,9 @@ window.onkeydown = function (e) {
                           Block.draw2();
                           const audio = new Audio("move.wav");
                           audio.play();
+                          Count.clear();
+                          Count.number++;
+                          Count.draw();
                         }
                       }
                     }
@@ -1855,6 +1899,9 @@ window.onkeydown = function (e) {
                           Block.draw3();
                           const audio = new Audio("move.wav");
                           audio.play();
+                          Count.clear();
+                          Count.number++;
+                          Count.draw();
                         }
                       }
                     }
@@ -1887,6 +1934,9 @@ window.onkeydown = function (e) {
                         Block.draws2();
                         const audio = new Audio("move.wav");
                         audio.play();
+                        Count.clear();
+                        Count.number++;
+                        Count.draw();
                       }
                     }
                   }
@@ -1910,6 +1960,9 @@ window.onkeydown = function (e) {
                         Block.draws1();
                         const audio = new Audio("move.wav");
                         audio.play();
+                        Count.clear();
+                        Count.number++;
+                        Count.draw();
                       }
                     }
                   }
@@ -1933,6 +1986,9 @@ window.onkeydown = function (e) {
                         Block.draws1();
                         const audio = new Audio("move.wav");
                         audio.play();
+                        Count.clear();
+                        Count.number++;
+                        Count.draw();
                       }
                     }
                   }
@@ -1954,6 +2010,9 @@ window.onkeydown = function (e) {
                         Block.draws2();
                         const audio = new Audio("move.wav");
                         audio.play();
+                        Count.clear();
+                        Count.number++;
+                        Count.draw();
                       }
                     }
                   }
@@ -1983,6 +2042,9 @@ window.onkeydown = function (e) {
                         Block.draws1();
                         const audio = new Audio("move.wav");
                         audio.play();
+                        Count.clear();
+                        Count.number++;
+                        Count.draw();
                       }
                     }
                   }
@@ -2005,6 +2067,9 @@ window.onkeydown = function (e) {
                         Block.draws3();
                         const audio = new Audio("move.wav");
                         audio.play();
+                        Count.clear();
+                        Count.number++;
+                        Count.draw();
                       }
                     }
                   }
@@ -2027,6 +2092,9 @@ window.onkeydown = function (e) {
                         Block.draws3();
                         const audio = new Audio("move.wav");
                         audio.play();
+                        Count.clear();
+                        Count.number++;
+                        Count.draw();
                       }
                     }
                   }
@@ -2049,6 +2117,9 @@ window.onkeydown = function (e) {
                         Block.draws1();
                         const audio = new Audio("move.wav");
                         audio.play();
+                        Count.clear();
+                        Count.number++;
+                        Count.draw();
                       }
                     }
                   }
@@ -2079,6 +2150,9 @@ window.onkeydown = function (e) {
                         Block.draws3();
                         const audio = new Audio("move.wav");
                         audio.play();
+                        Count.clear();
+                        Count.number++;
+                        Count.draw();
                       }
                     }
                   }
@@ -2100,6 +2174,9 @@ window.onkeydown = function (e) {
                         Block.draws2();
                         const audio = new Audio("move.wav");
                         audio.play();
+                        Count.clear();
+                        Count.number++;
+                        Count.draw();
                       }
                     }
                   }
@@ -2121,6 +2198,9 @@ window.onkeydown = function (e) {
                         Block.draws2();
                         const audio = new Audio("move.wav");
                         audio.play();
+                        Count.clear();
+                        Count.number++;
+                        Count.draw();
                       }
                     }
                   }
@@ -2144,6 +2224,9 @@ window.onkeydown = function (e) {
                         Block.draws3();
                         const audio = new Audio("move.wav");
                         audio.play();
+                        Count.clear();
+                        Count.number++;
+                        Count.draw();
                       }
                     }
                   }
@@ -2484,6 +2567,9 @@ window.onkeydown = function (e) {
                       Sblock.draw1();
                       const audio = new Audio("move.wav");
                       audio.play();
+                      Count.clear();
+                      Count.number++;
+                      Count.draw();
                     }
                   }
                 }
@@ -2508,6 +2594,9 @@ window.onkeydown = function (e) {
                       Sblock.draw1();
                       const audio = new Audio("move.wav");
                       audio.play();
+                      Count.clear();
+                      Count.number++;
+                      Count.draw();
                     }
                   }
                 }
@@ -2529,6 +2618,9 @@ window.onkeydown = function (e) {
                       Sblock.draw2();
                       const audio = new Audio("move.wav");
                       audio.play();
+                      Count.clear();
+                      Count.number++;
+                      Count.draw();
                     }
                   }
                 }
@@ -2560,6 +2652,9 @@ window.onkeydown = function (e) {
                       Sblock.draw1();
                       const audio = new Audio("move.wav");
                       audio.play();
+                      Count.clear();
+                      Count.number++;
+                      Count.draw();
                     }
                   }
                 }
@@ -2584,6 +2679,9 @@ window.onkeydown = function (e) {
                       Sblock.draw4();
                       const audio = new Audio("move.wav");
                       audio.play();
+                      Count.clear();
+                      Count.number++;
+                      Count.draw();
                     }
                   }
                 }
@@ -2608,6 +2706,9 @@ window.onkeydown = function (e) {
                       Sblock.draw3();
                       const audio = new Audio("move.wav");
                       audio.play();
+                      Count.clear();
+                      Count.number++;
+                      Count.draw();
                     }
                   }
                 }
@@ -2632,6 +2733,9 @@ window.onkeydown = function (e) {
                       Sblock.draw5();
                       const audio = new Audio("move.wav");
                       audio.play();
+                      Count.clear();
+                      Count.number++;
+                      Count.draw();
                     }
                   }
                 }
@@ -2664,6 +2768,9 @@ window.onkeydown = function (e) {
                       Sblock.draw3();
                       const audio = new Audio("move.wav");
                       audio.play();
+                      Count.clear();
+                      Count.number++;
+                      Count.draw();
                     }
                   }
                 }
@@ -2685,6 +2792,9 @@ window.onkeydown = function (e) {
                       Sblock.draw2();
                       const audio = new Audio("move.wav");
                       audio.play();
+                      Count.clear();
+                      Count.number++;
+                      Count.draw();
                     }
                   }
                 }
@@ -2709,6 +2819,9 @@ window.onkeydown = function (e) {
                       Sblock.draw3();
                       const audio = new Audio("move.wav");
                       audio.play();
+                      Count.clear();
+                      Count.number++;
+                      Count.draw();
                     }
                   }
                 }
@@ -2741,6 +2854,9 @@ window.onkeydown = function (e) {
                       Sblock.draw4();
                       const audio = new Audio("move.wav");
                       audio.play();
+                      Count.clear();
+                      Count.number++;
+                      Count.draw();
                     }
                   }
                 }
@@ -2765,6 +2881,9 @@ window.onkeydown = function (e) {
                       Sblock.draw4();
                       const audio = new Audio("move.wav");
                       audio.play();
+                      Count.clear();
+                      Count.number++;
+                      Count.draw();
                     }
                   }
                 }
@@ -2786,6 +2905,9 @@ window.onkeydown = function (e) {
                       Sblock.draw2();
                       const audio = new Audio("move.wav");
                       audio.play();
+                      Count.clear();
+                      Count.number++;
+                      Count.draw();
                     }
                   }
                 }
@@ -2818,6 +2940,9 @@ window.onkeydown = function (e) {
                       Sblock.draw5();
                       const audio = new Audio("move.wav");
                       audio.play();
+                      Count.clear();
+                      Count.number++;
+                      Count.draw();
                     }
                   }
                 }
@@ -2842,6 +2967,9 @@ window.onkeydown = function (e) {
                       Sblock.draw5();
                       const audio = new Audio("move.wav");
                       audio.play();
+                      Count.clear();
+                      Count.number++;
+                      Count.draw();
                     }
                   }
                 }
@@ -2863,6 +2991,9 @@ window.onkeydown = function (e) {
                       Sblock.draw2();
                       const audio = new Audio("move.wav");
                       audio.play();
+                      Count.clear();
+                      Count.number++;
+                      Count.draw();
                     }
                   }
                 }

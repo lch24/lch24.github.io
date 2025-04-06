@@ -8,8 +8,11 @@ import Bridge from "./bridge.js";
 import Cegg from "./coloregg.js";
 import Wall from "./wall.js";
 import { init4 } from "./icon.js";
+import Sblock from "./strangeblock.js";
+import Saw from "./saw.js";
+import Count from "./count.js";
 const Play = {
-  num: 1,
+  num: 9,
   play() {
     init4();
     switch (this.num) {
@@ -53,6 +56,9 @@ const Play = {
           End.num = 1;
           End.position = [10, 8];
           End.draw();
+          Count.number = 0;
+          Count.clear();
+          Count.draw();
           for (let i = 13; i > -1; i--) {
             for (let j = 0; j < 20; j++) {
               if (control.center[i][j] == 1) {
@@ -64,6 +70,71 @@ const Play = {
         }
         break;
       case 2:
+        {
+          control.center[1][3] = 1;
+          control.center[1][4] = 1;
+          control.center[1][5] = 1;
+          control.center[1][6] = 1;
+          control.center[1][7] = 1;
+          control.center[1][8] = 1;
+          control.center[1][9] = 1;
+          control.center[1][10] = 1;
+          control.center[1][11] = 1;
+          control.center[1][12] = 1;
+          control.center[2][8] = 1;
+          control.center[2][9] = 1;
+          control.center[2][12] = 1;
+          control.center[3][8] = 1;
+          control.center[3][9] = 1;
+          control.center[3][12] = 1;
+          control.center[4][12] = 1;
+          control.center[5][9] = 1;
+          control.center[5][10] = 1;
+          control.center[5][11] = 1;
+          control.center[5][12] = 1;
+          control.center[6][7] = 1;
+          control.center[6][8] = 1;
+          control.center[6][9] = 1;
+          control.center[6][10] = 1;
+          control.center[6][11] = 1;
+          control.center[6][12] = 1;
+          control.center[7][7] = 1;
+          control.center[7][8] = 1;
+          control.center[7][9] = 1;
+          control.center[7][10] = 1;
+          control.center[7][12] = 1;
+          control.center[8][6] = 1;
+          control.center[8][12] = 1;
+          control.center[9][5] = 1;
+          control.center[9][6] = 5;
+          control.center[9][7] = 1;
+          control.center[9][8] = 1;
+          control.center[9][9] = 1;
+          control.center[9][10] = 1;
+          control.center[9][11] = 1;
+          control.center[9][12] = 1;
+          control.center[10][6] = 1;
+          Block.position = [1, 3];
+          Block.state = 3;
+          Block.num = 1;
+          Block.draw3();
+          Count.number = 0;
+          Count.clear();
+          Count.draw();
+          End.num = 1;
+          End.position = [9, 6];
+          End.draw();
+          for (let i = 13; i > -1; i--) {
+            for (let j = 0; j < 20; j++) {
+              if (control.center[i][j] == 1) {
+                Ground.position = [i, j];
+                Ground.draw();
+              }
+            }
+          }
+        }
+        break;
+      case 3:
         {
           control.center[2][4] = 1;
           control.center[2][5] = 1;
@@ -110,6 +181,9 @@ const Play = {
           End.num = 1;
           End.position = [9, 11];
           End.draw();
+          Count.number = 0;
+          Count.clear();
+          Count.draw();
           Button.position = [4, 7];
           Button.draw1();
           for (let i = 13; i > -1; i--) {
@@ -122,7 +196,7 @@ const Play = {
           }
         }
         break;
-      case 3:
+      case 4:
         {
           control.center[1][3] = 1;
           control.center[1][4] = 1;
@@ -182,6 +256,9 @@ const Play = {
           Button.draw2();
           Button.position = [8, 8];
           Button.draw2();
+          Count.number = 0;
+          Count.clear();
+          Count.draw();
           for (let i = 13; i > -1; i--) {
             for (let j = 0; j < 20; j++) {
               if (control.center[i][j] == 1 || control.center[i][j] == 4) {
@@ -192,7 +269,7 @@ const Play = {
           }
         }
         break;
-      case 4:
+      case 5:
         {
           control.center[2][2] = 1;
           control.center[2][3] = 1;
@@ -238,6 +315,9 @@ const Play = {
           control.center[9][11] = 1;
           control.center[9][12] = 7;
           control.center[9][13] = 1;
+          Count.number = 0;
+          Count.clear();
+          Count.draw();
           Block.position = [3, 2];
           Block.state = 1;
           Block.num = 1;
@@ -258,7 +338,7 @@ const Play = {
           }
         }
         break;
-      case 5:
+      case 6:
         {
           control.center[3][7] = 1;
           control.center[3][8] = 1;
@@ -282,6 +362,9 @@ const Play = {
           control.center[8][8] = 1;
           control.center[8][9] = 1;
           control.center[8][10] = 1;
+          Count.number = 0;
+          Count.clear();
+          Count.draw();
           Block.position = [3, 8];
           Block.state = 1;
           Block.num = 1;
@@ -353,7 +436,7 @@ const Play = {
           }
         }
         break;
-      case 6:
+      case 7:
         {
           for (let i = 3; i < 12; i++) {
             control.center[i][4] = 1;
@@ -368,6 +451,9 @@ const Play = {
           control.center[11][13] = 0;
           control.center[10][5] = 5;
           control.center[9][12] = 5;
+          Count.number = 0;
+          Count.clear();
+          Count.draw();
           Block.position = [3, 5];
           Block2.position = [3, 12];
           Block2.state = 1;
@@ -391,7 +477,139 @@ const Play = {
           }
         }
         break;
-      case 7:
+      case 8:
+        {
+          control.center[2][6] = 1;
+          control.center[2][7] = 1;
+          control.center[2][8] = 1;
+          control.center[3][6] = 1;
+          control.center[3][7] = 1;
+          control.center[3][8] = 1;
+          control.center[3][11] = 1;
+          control.center[3][12] = 1;
+          control.center[3][13] = 1;
+          control.center[4][6] = 1;
+          control.center[4][7] = 1;
+          control.center[4][8] = 1;
+          control.center[4][9] = 1;
+          control.center[4][10] = 1;
+          control.center[4][11] = 1;
+          control.center[4][12] = 1;
+          control.center[4][13] = 1;
+          control.center[5][6] = 1;
+          control.center[5][7] = 1;
+          control.center[5][8] = 1;
+          control.center[5][9] = 1;
+          control.center[5][10] = 1;
+          control.center[5][11] = 1;
+          control.center[5][12] = 1;
+          control.center[5][13] = 1;
+          control.center[6][11] = 1;
+          control.center[6][12] = 1;
+          control.center[6][13] = 1;
+          control.center[7][11] = 1;
+          control.center[7][12] = 5;
+          control.center[7][13] = 1;
+          control.center[8][11] = 1;
+          control.center[8][12] = 1;
+          control.center[8][13] = 1;
+          control.choice = 0;
+          Count.number = 0;
+          Count.clear();
+          Count.draw();
+          Sblock.position = [3, 6];
+          Sblock.state = 5;
+          Sblock.num = 1;
+          Sblock.draw5();
+          End.num = 1;
+          End.position = [7, 12];
+          End.draw();
+          for (let i = 13; i > -1; i--) {
+            for (let j = 0; j < 20; j++) {
+              if (control.center[i][j] == 1) {
+                Ground.position = [i, j];
+                Ground.draw();
+              }
+            }
+          }
+        }
+        break;
+      case 9:
+        {
+          control.center[2][6] = 1;
+          control.center[2][5] = 1;
+          control.center[2][4] = 1;
+          control.center[3][4] = 1;
+          control.center[3][5] = 1;
+          control.center[3][6] = 1;
+          control.center[3][7] = 1;
+          control.center[3][8] = 1;
+          control.center[4][4] = 1;
+          control.center[4][5] = 1;
+          control.center[4][6] = 1;
+          control.center[4][7] = 1;
+          control.center[4][8] = 1;
+          control.center[5][4] = 1;
+          control.center[5][5] = 1;
+          control.center[5][6] = 1;
+          control.center[5][7] = 1;
+          control.center[5][8] = 1;
+          control.center[6][6] = 1;
+          control.center[6][7] = 1;
+          control.center[6][8] = 1;
+          control.center[8][6] = 1;
+          control.center[8][9] = 1;
+          control.center[8][10] = 1;
+          control.center[8][11] = 1;
+          control.center[8][12] = 1;
+          control.center[8][13] = 1;
+          control.center[8][14] = 1;
+          control.center[9][6] = 1;
+          control.center[9][7] = 1;
+          control.center[9][8] = 1;
+          control.center[9][9] = 1;
+          control.center[9][10] = 1;
+          control.center[9][11] = 1;
+          control.center[9][12] = 1;
+          control.center[9][13] = 1;
+          control.center[9][14] = 1;
+          control.center[10][9] = 1;
+          control.center[10][10] = 1;
+          control.center[10][11] = 1;
+          control.center[10][12] = 5;
+          control.center[10][13] = 1;
+          control.center[10][14] = 1;
+          control.center[10][9] = 1;
+          control.center[11][10] = 1;
+          control.center[11][11] = 1;
+          control.center[11][12] = 1;
+          control.center[11][13] = 1;
+          control.center[11][14] = 1;
+          Count.number = 0;
+          Count.clear();
+          Count.draw();
+          Block.position = [3, 4];
+          Block.state = 1;
+          Block.num = 1;
+          Block.draw1();
+          Saw.position = [4, 7];
+          Saw.state = 1;
+          Saw.num = 1;
+          Saw.draw();
+          End.num = 1;
+          End.position = [10, 12];
+          End.draw();
+          for (let i = 13; i > -1; i--) {
+            for (let j = 0; j < 20; j++) {
+              if (control.center[i][j] == 1) {
+                Ground.position = [i, j];
+                Ground.draw();
+              }
+            }
+          }
+        }
+        break;
+      case 10:
         {
           control.center[0][4] = 1;
           control.center[0][5] = 1;
@@ -445,6 +663,9 @@ const Play = {
             [2, 12],
             [6, 12],
           ];
+          Count.number = 0;
+          Count.clear();
+          Count.draw();
           Block.position = [0, 4];
           Block.state = 3;
           Block.num = 1;

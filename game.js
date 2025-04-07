@@ -36,6 +36,8 @@ window.onclick = function (e) {
               break;
             } else {
               control.center[lst[0]][lst[1]] = 1;
+              const audio = new Audio("./set2.wav");
+              audio.play();
               Accompany.clear();
               drawground(lst);
             }
@@ -47,6 +49,8 @@ window.onclick = function (e) {
               break;
             } else {
               if (drawbridge(lst)) {
+                const audio = new Audio("./rise.wav");
+                audio.play();
                 control.center[lst[0]][lst[1]] = 2;
                 Accompany.clear();
                 Bridge.position = lst;
@@ -124,7 +128,7 @@ window.onclick = function (e) {
             ) {
               End.position = lst;
               End.draw();
-              End.num = 1;
+              End.num++;
               control.center[lst[0]][lst[1]] = 5;
               control.choice = 0;
               Accompany.clear();
@@ -145,6 +149,8 @@ window.onclick = function (e) {
                       control.center[lst[0] + 1][lst[1]] == 1.25)
                   ) {
                     if (!Block.num) {
+                      const audio = new Audio("./set.wav");
+                      audio.play();
                       Block.position = lst;
                       Block.draw1();
                       Block.num = 1;
@@ -160,6 +166,8 @@ window.onclick = function (e) {
                         var a = document.getElementById("block");
                         a.style.zIndex = 38;
                       }
+                      const audio = new Audio("./set.wav");
+                      audio.play();
                       Block2.draw1();
                       Block2.num = 1;
                       Block2.state = 1;
@@ -178,6 +186,8 @@ window.onclick = function (e) {
                     control.center[lst[0]][lst[1]] == 1.75
                   ) {
                     if (!Block.num) {
+                      const audio = new Audio("./set.wav");
+                      audio.play();
                       Block.position = lst;
                       Block.draw2();
                       Block.num = 1;
@@ -193,6 +203,8 @@ window.onclick = function (e) {
                         var a = document.getElementById("block");
                         a.style.zIndex = 38;
                       }
+                      const audio = new Audio("./set.wav");
+                      audio.play();
                       Block2.draw2();
                       Block2.num = 1;
                       Block2.state = 2;
@@ -213,6 +225,8 @@ window.onclick = function (e) {
                       control.center[lst[0]][lst[1] + 1] == 1.5)
                   ) {
                     if (!Block.num) {
+                      const audio = new Audio("./set.wav");
+                      audio.play();
                       Block.position = lst;
                       Block.draw3();
                       Block.num = 1;
@@ -228,6 +242,8 @@ window.onclick = function (e) {
                         var a = document.getElementById("block");
                         a.style.zIndex = 38;
                       }
+                      const audio = new Audio("./set.wav");
+                      audio.play();
                       Block2.draw3();
                       Block2.num = 1;
                       Block2.state = 3;
@@ -3222,67 +3238,67 @@ window.onkeyup = function () {
           Block.draws3();
         }, 2000);
       }
-    }
-    if (Block2.num) {
-      let [a, b] = Block2.position;
-      if (
-        control.center[x][y] >= 5 &&
-        control.center[x][y] < 6 &&
-        Block.state == 2 &&
-        control.center[a][b] >= 5 &&
-        control.center[a][b] < 6 &&
-        Block2.state == 2
-      ) {
-        h = 0;
-        v = 0;
-        k = 0;
-        Lst = [];
-        Block.clear();
-        Block2.clear();
-        End.position = [x, y];
-        Accompany.set(39);
-        end();
-        End.position = [a, b];
-        Accompany.set(39);
-        end();
-        const audio = new Audio("win.wav");
-        audio.play();
-        if (control.process == 1) {
-          setTimeout(Dialog.win, 1000);
-          Dialog.type = 3;
-        } else {
-          setTimeout(Dialog.win2, 1000);
-          Dialog.type = 4;
-        }
-        control.process = 3;
-      }
-    } else {
-      if (
-        control.center[x][y] >= 5 &&
-        control.center[x][y] < 6 &&
-        Block.state == 2
-      ) {
-        h = 0;
-        v = 0;
-        k = 0;
-        Lst = [];
-        Block.clear();
-        Accompany.set(39);
-        if (Block.split) {
-          end3();
-        } else {
+      if (Block2.num) {
+        let [a, b] = Block2.position;
+        if (
+          control.center[x][y] >= 5 &&
+          control.center[x][y] < 6 &&
+          Block.state == 2 &&
+          control.center[a][b] >= 5 &&
+          control.center[a][b] < 6 &&
+          Block2.state == 2
+        ) {
+          h = 0;
+          v = 0;
+          k = 0;
+          Lst = [];
+          Block.clear();
+          Block2.clear();
+          End.position = [x, y];
+          Accompany.set(39);
           end();
+          End.position = [a, b];
+          Accompany.set(39);
+          end();
+          const audio = new Audio("win.wav");
+          audio.play();
+          if (control.process == 1) {
+            setTimeout(Dialog.win, 1000);
+            Dialog.type = 3;
+          } else {
+            setTimeout(Dialog.win2, 1000);
+            Dialog.type = 4;
+          }
+          control.process = 3;
         }
-        const audio = new Audio("win.wav");
-        audio.play();
-        if (control.process == 1) {
-          setTimeout(Dialog.win, 1000);
-          Dialog.type = 3;
-        } else {
-          setTimeout(Dialog.win2, 1000);
-          Dialog.type = 4;
+      } else {
+        if (
+          control.center[x][y] >= 5 &&
+          control.center[x][y] < 6 &&
+          Block.state == 2
+        ) {
+          h = 0;
+          v = 0;
+          k = 0;
+          Lst = [];
+          Block.clear();
+          Accompany.set(39);
+          if (Block.split) {
+            end3();
+          } else {
+            end();
+          }
+          const audio = new Audio("win.wav");
+          audio.play();
+          if (control.process == 1) {
+            setTimeout(Dialog.win, 1000);
+            Dialog.type = 3;
+          } else {
+            setTimeout(Dialog.win2, 1000);
+            Dialog.type = 4;
+          }
+          control.process = 3;
         }
-        control.process = 3;
       }
     }
     if (Sblock.num) {

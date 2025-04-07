@@ -12,7 +12,7 @@ import Sblock from "./strangeblock.js";
 import Saw from "./saw.js";
 import Count from "./count.js";
 const Play = {
-  num: 8,
+  num: 1,
   play() {
     init4();
     switch (this.num) {

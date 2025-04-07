@@ -972,6 +972,7 @@ window.onclick = function (e) {
             Wall.clear2(900);
             Saw.clear();
             Saw.clear2();
+            Block.split = 0;
             Saw.position = [];
             Saw.num = 0;
             Sblock.num = 0;
@@ -1008,6 +1009,7 @@ window.onclick = function (e) {
             Bridge.position = [];
             Bridge.button = [];
             Button.position = [];
+            Block.split = 0;
             Button.bridge = [];
             Wall.clear(900);
             Wall.clear2(900);
@@ -1041,6 +1043,7 @@ window.onclick = function (e) {
             Bridge.button = [];
             Button.position = [];
             Button.bridge = [];
+            Block.split = 0;
             Wall.clear();
             Wall.clear2();
             clx();
@@ -1094,6 +1097,7 @@ window.onclick = function (e) {
               Saw.clear2();
               Saw.position = [];
               Saw.num = 0;
+              Block.split = 0;
               Sblock.num = 0;
               Sblock.clear();
               Sblock.position = [];
@@ -1126,6 +1130,7 @@ window.onclick = function (e) {
               Bridge.button = [];
               Button.position = [];
               Button.bridge = [];
+              Block.split = 0;
               Wall.clear();
               Wall.clear2();
               clx();
@@ -1177,6 +1182,7 @@ window.onclick = function (e) {
               Saw.num = 0;
               Sblock.num = 0;
               Sblock.clear();
+              Block.split = 0;
               Sblock.position = [];
               clx();
               clear();
@@ -1226,6 +1232,7 @@ window.onclick = function (e) {
             Sblock.num = 0;
             Sblock.clear();
             Sblock.position = [];
+            Block.split = 0;
             clx();
             clear();
             Cegg.clear();
@@ -1276,6 +1283,7 @@ window.onclick = function (e) {
             Sblock.num = 0;
             Sblock.clear();
             Sblock.position = [];
+            Block.split = 0;
             clx();
             for (let i = 0; i < 14; i++) {
               for (let j = 0; j < 20; j++) {
